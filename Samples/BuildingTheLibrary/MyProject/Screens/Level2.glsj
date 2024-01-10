@@ -1,0 +1,233 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "BaseScreen": "Screens\\GameScreen",
+  "BaseElement": "Screens\\GameScreen",
+  "ReferencedFiles": [
+    {
+      "Name": "gumproject/Screens/Level2Gum.gusx",
+      "IsSharedStatic": true,
+      "RuntimeType": "MyProject.GumRuntimes.Level2GumRuntime",
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Screens/Level2/Level2Map.tmx",
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.TileGraphics.LayeredTileMap",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "Map",
+      "SourceClassType": "FlatRedBall.TileGraphics.LayeredTileMap",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "bool",
+          "Member": "CreateEntitiesFromTiles",
+          "Value": true,
+          "Time": 0.0
+        },
+        {
+          "Type": "bool",
+          "Member": "ShiftMapToMoveGameplayLayerToZ0",
+          "Value": true,
+          "Time": 0.0
+        }
+      ],
+      "SourceFile": "Screens/Level2/Level2Map.tmx",
+      "SourceName": "Entire File (LayeredTileMap)",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true
+    },
+    {
+      "InstanceName": "SolidCollision",
+      "SourceClassType": "FlatRedBall.TileCollisions.TileShapeCollection",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "CollisionCreationOptions",
+          "Value": 4,
+          "Type": "int"
+        },
+        {
+          "Name": "CollisionTileSize",
+          "Value": 16.0,
+          "Type": "float"
+        },
+        {
+          "Name": "CollisionFillWidth",
+          "Value": 32,
+          "Type": "int"
+        },
+        {
+          "Name": "CollisionFillHeight",
+          "Value": 1,
+          "Type": "int"
+        },
+        {
+          "Name": "InnerSizeWidth",
+          "Value": 800.0,
+          "Type": "float"
+        },
+        {
+          "Name": "InnerSizeHeight",
+          "Value": 600.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SourceTmxName",
+          "Value": "Map",
+          "Type": "String"
+        },
+        {
+          "Name": "CollisionTileTypeName",
+          "Value": "SolidCollision",
+          "Type": "String"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "FlatRedBall.TileCollisions.TileShapeCollection",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true
+    },
+    {
+      "InstanceName": "CloudCollision",
+      "SourceClassType": "FlatRedBall.TileCollisions.TileShapeCollection",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        },
+        {
+          "Name": "CollisionCreationOptions",
+          "Value": 4,
+          "Type": "int"
+        },
+        {
+          "Name": "CollisionTileSize",
+          "Value": 16.0,
+          "Type": "float"
+        },
+        {
+          "Name": "CollisionFillWidth",
+          "Value": 32,
+          "Type": "int"
+        },
+        {
+          "Name": "CollisionFillHeight",
+          "Value": 1,
+          "Type": "int"
+        },
+        {
+          "Name": "InnerSizeWidth",
+          "Value": 800.0,
+          "Type": "float"
+        },
+        {
+          "Name": "InnerSizeHeight",
+          "Value": 600.0,
+          "Type": "float"
+        },
+        {
+          "Name": "SourceTmxName",
+          "Value": "Map",
+          "Type": "String"
+        },
+        {
+          "Name": "CollisionTileTypeName",
+          "Value": "CloudCollision",
+          "Type": "String"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "string",
+          "Member": "RepositionUpdateStyle",
+          "Value": "Upward",
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 2,
+      "SourceFile": "FlatRedBall.TileCollisions.TileShapeCollection",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true
+    },
+    {
+      "InstanceName": "PlayerList",
+      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "PositionedObjectList (Generic)",
+      "SourceClassGenericType": "Entities\\Player",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true,
+      "ContainedObjects": [
+        {
+          "InstanceName": "Player1",
+          "SourceClassType": "Entities\\Player",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 64.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -64.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\Player",
+          "ExposedInDerived": true,
+          "AttachToContainer": true,
+          "GenerateTimedEmit": true,
+          "DefinedByBase": true,
+          "InstantiatedByBase": true
+        }
+      ]
+    }
+  ],
+  "Name": "Screens\\Level2",
+  "CustomClassesForExport": []
+}

@@ -1,0 +1,715 @@
+{
+  "UserEvents": {
+    "vchel": [],
+    "Dark Files V": [],
+    "Owner": [
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.Container ContainerInstance in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-28T16:38:36.3813153Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.ColoredRectangle ColoredRectangleInstance in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-28T16:38:36.409472Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.ColoredRectangle ColoredRectangleInstance1 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-28T16:38:36.4104724Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.ColoredRectangle ColoredRectangleInstance2 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-28T16:38:36.4184726Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.ColoredRectangle ColoredRectangleInstance3 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-28T16:38:36.4259349Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:20:48.8903498Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:20:59.2382524Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:21:07.7264046Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:21:47.6678493Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:26:53.4737433Z"
+      },
+      {
+        "NewName": "UITestScreenGum1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2023-12-29T13:27:27.1521448Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum1",
+        "ElementType": "Screens",
+        "EventType": 1,
+        "TimestampUtc": "2023-12-29T13:27:35.1571054Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:31:49.5856098Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:38:39.0401952Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:42:57.3249868Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.ColoredRectangle ColoredRectangleInstance1 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T13:43:04.1572108Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:47:21.3737231Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:49:23.3437064Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:49:54.1651348Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:54:31.7733411Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T13:57:23.5240862Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T14:01:05.2001675Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T15:30:50.7593829Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ColoredRectangleInstance2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T15:30:51.2186398Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.ColoredRectangle ColoredRectangleInstance1 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T15:30:57.5600888Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.ColoredRectangle ColoredRectangleInstance2 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T15:31:07.4241996Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.ColoredRectangle ColoredRectangleInstance in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T15:31:07.4253054Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ContainerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T15:31:35.292329Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ContainerInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T15:31:37.3273785Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ContainerInstance2",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T15:31:37.7959324Z"
+      },
+      {
+        "NewName": "UITestScreenGum.ContainerInstance3",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T15:31:38.4413535Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.Container ContainerInstance3 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T15:36:30.0871418Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.Container ContainerInstance2 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T15:36:30.0906274Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.Container ContainerInstance1 in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T15:36:30.0916283Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.Container ContainerInstance in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T15:36:30.1068933Z"
+      },
+      {
+        "NewName": "UITestScreenGum.SpriteInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T15:36:33.8136325Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "UITestScreenGum.Sprite SpriteInstance in UITestScreenGum",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2023-12-29T16:18:00.9323398Z"
+      },
+      {
+        "NewName": "TestComponent",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2023-12-29T16:18:28.8852266Z"
+      },
+      {
+        "NewName": "TestComponent (Container).TextInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2023-12-29T16:19:19.5052803Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:43:01.180004Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:43:01.1818251Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:43:01.2155026Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:43:01.239542Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:43:01.239542Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:44:23.1771312Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:44:23.1781337Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:44:23.1946294Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:44:23.2152467Z"
+      },
+      {
+        "NewName": "MainPage (MobileAppGumPage).GreetingLabel",
+        "OldName": "MainPage (MobileAppGumPage).GreetingLabel1234",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T18:44:23.2258167Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).StyledButtonInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T18:57:57.880799Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).BottomNavigationBarInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T19:07:33.3736255Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "TestPage (MobileAppGumPage).XamarinForms/BottomNavigationBar BottomNavigationBarInstance in TestPage (MobileAppGumPage)",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T19:20:11.046208Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).StyledDatePickerInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T19:20:30.0849125Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).StyledRadioButtonInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T19:20:44.4040416Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).StyledEntryInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T19:20:55.6400877Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).StyledRadioButtonInstance1",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T19:20:59.6708414Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "TestPage (MobileAppGumPage).XamarinForms/StyledRadioButton StyledRadioButtonInstance in TestPage (MobileAppGumPage)",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T19:21:50.1230762Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "TestPage (MobileAppGumPage).XamarinForms/StyledRadioButton StyledRadioButtonInstance1 in TestPage (MobileAppGumPage)",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T19:21:53.0110041Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).SkiaGumCanvasViewInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T19:24:35.5627688Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).RoundedRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T19:25:22.3426662Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).RoundedRectangleInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T19:25:32.0542548Z"
+      },
+      {
+        "NewName": "TestPage (MobileAppGumPage).RectangleInCanvas",
+        "OldName": "TestPage (MobileAppGumPage).RoundedRectangleInstance",
+        "ElementType": "Screens",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T19:37:31.0330268Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "AnalyticsPage (MobileAppTitleBarPage).XamarinForms/AbsoluteLayout MainStackPadding in AnalyticsPage (MobileAppTitleBarPage)",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T21:03:47.7639766Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "MainPage (MobileAppGumPage).XamarinForms/AbsoluteLayout AdditionalGapForOverlappingBar in MainPage (MobileAppGumPage)",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T21:07:31.8884997Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIconContainer1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:16:54.5890676Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).XamarinForms/SkiaGumCanvasView CloseIconContainer1 in XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T21:16:59.6165986Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIconContainer1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:17:04.1137007Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:17:15.2172299Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:17:18.9358268Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).Svg CloseIcon1 in XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T21:18:39.9035621Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:18:45.6411617Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).Svg CloseIcon1 in XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T21:18:48.7478774Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:25:02.752013Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).Svg CloseIcon1 in XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T21:25:07.2716312Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:25:58.6588997Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).Svg CloseIcon1 in XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-08T21:26:02.8452141Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:34:22.0734064Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkContainer",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIconContainer1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:00.3582792Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkContainer",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIconContainer1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:00.3597233Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkContainer",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIconContainer1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:00.3744987Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkContainer",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIconContainer1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:00.3744987Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkContainer",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIconContainer1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:00.387165Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkSvg",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:06.1940772Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkSvg",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:06.195077Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkSvg",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:06.195077Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkSvg",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:06.2064408Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CheckmarkSvg",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).CloseIcon1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:37:06.214655Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).TrackableExampleLabel1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-08T21:44:50.4872919Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).YourNewTrackableLabel",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).TrackableExampleLabel1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:46:27.8191278Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).YourNewTrackableLabel",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).TrackableExampleLabel1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:46:27.8205314Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).YourNewTrackableLabel",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).TrackableExampleLabel1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:46:27.8235106Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).YourNewTrackableLabel",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).TrackableExampleLabel1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:46:27.8330481Z"
+      },
+      {
+        "NewName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).YourNewTrackableLabel",
+        "OldName": "XamarinForms/Popups/RecordingPopup (XamarinForms/Popups/MultiButtonPopupBase).TrackableExampleLabel1",
+        "ElementType": "Components",
+        "EventType": 7,
+        "TimestampUtc": "2024-01-08T21:46:27.8420698Z"
+      },
+      {
+        "NewName": "BaseComponent",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-01-10T02:51:30.9708299Z"
+      },
+      {
+        "NewName": "BaseComponent (Container).RectangleInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-10T02:51:37.8421062Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "BaseComponent (Container).Rectangle RectangleInstance in BaseComponent (Container)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-10T02:51:42.5065029Z"
+      },
+      {
+        "NewName": "BaseComponent (Container).ColoredRectangleInstance",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-10T02:51:48.5496784Z"
+      },
+      {
+        "NewName": "DerivedComponent",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 0,
+        "TimestampUtc": "2024-01-10T02:51:55.7680896Z"
+      },
+      {
+        "NewName": "DerivedComponent (BaseComponent).ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-10T02:52:27.9905906Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "DerivedComponent (BaseComponent).ColoredRectangle ColoredRectangleInstance1 in DerivedComponent (BaseComponent)",
+        "ElementType": "Components",
+        "EventType": 6,
+        "TimestampUtc": "2024-01-10T02:52:32.8855541Z"
+      },
+      {
+        "NewName": "DerivedComponent (BaseComponent).ColoredRectangleInstance1",
+        "OldName": null,
+        "ElementType": "Components",
+        "EventType": 5,
+        "TimestampUtc": "2024-01-10T03:02:48.975548Z"
+      }
+    ]
+  }
+}
