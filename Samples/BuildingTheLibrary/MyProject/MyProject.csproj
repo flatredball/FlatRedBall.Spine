@@ -775,7 +775,7 @@
     <ProjectReference Include="../../../../Gum/GumCore/GumCoreXnaPc/GumCore.DesktopGlNet6/GumCore.DesktopGlNet6.csproj">
       <Name>GumCore.DesktopGlNet6</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SpineCSharpNet6\FlatRedBall.Spine.csproj" />
+    <ProjectReference Include="..\..\..\Source\FlatRedBall.Spine.MonoGame.DesktopGL.csproj" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />

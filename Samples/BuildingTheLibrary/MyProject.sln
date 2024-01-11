@@ -4,8 +4,6 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProject", "MyProject\MyProject.csproj", "{D7079294-70C6-4204-B29E-C505EC181815}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlatRedBall.Spine", "SpineCSharpNet6\FlatRedBall.Spine.csproj", "{80EA2F20-C33E-40C3-9F20-259E392D1A78}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateInterpolation.DesktopNet6", "..\..\..\FlatRedBall\Engines\Forms\FlatRedBall.Forms\StateInterpolation\StateInterpolation.DesktopGlNet6\StateInterpolation.DesktopNet6.csproj", "{57DD58CD-77F0-4CA5-AA3C-4352E02B951D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlatRedBallDesktopGLNet6", "..\..\..\FlatRedBall\Engines\FlatRedBallXNA\FlatRedBallDesktopGLNet6\FlatRedBallDesktopGLNet6.csproj", "{80AFD790-AE5B-43AE-9DA0-908943B5529F}"
@@ -24,6 +22,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GumCoreShared.FlatRedBall",
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StateInterpolationShared", "..\..\..\FlatRedBall\FRBDK\Glue\StateInterpolationPlugin\StateInterpolationPlugin\StateInterpolationShared.shproj", "{D00D287D-385B-42FB-BF5F-04401E7D37D0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlatRedBall.Spine.MonoGame.DesktopGL", "..\..\Source\FlatRedBall.Spine.MonoGame.DesktopGL.csproj", "{DAD05AFA-7C99-48F3-980A-2F9C3D7679FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +34,6 @@ Global
 		{D7079294-70C6-4204-B29E-C505EC181815}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7079294-70C6-4204-B29E-C505EC181815}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7079294-70C6-4204-B29E-C505EC181815}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80EA2F20-C33E-40C3-9F20-259E392D1A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80EA2F20-C33E-40C3-9F20-259E392D1A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80EA2F20-C33E-40C3-9F20-259E392D1A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80EA2F20-C33E-40C3-9F20-259E392D1A78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57DD58CD-77F0-4CA5-AA3C-4352E02B951D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57DD58CD-77F0-4CA5-AA3C-4352E02B951D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57DD58CD-77F0-4CA5-AA3C-4352E02B951D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,6 +50,10 @@ Global
 		{574FDE5D-569B-41CB-BF20-0C0AA7FFDDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{574FDE5D-569B-41CB-BF20-0C0AA7FFDDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{574FDE5D-569B-41CB-BF20-0C0AA7FFDDEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAD05AFA-7C99-48F3-980A-2F9C3D7679FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD05AFA-7C99-48F3-980A-2F9C3D7679FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD05AFA-7C99-48F3-980A-2F9C3D7679FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD05AFA-7C99-48F3-980A-2F9C3D7679FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
