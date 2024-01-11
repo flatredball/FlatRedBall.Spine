@@ -60,11 +60,6 @@
       "Name": "InputDevice",
       "Value": 0,
       "Type": "int"
-    },
-    {
-      "Name": "ImplementsIDrawableBatch",
-      "Value": true,
-      "Type": "bool"
     }
   ],
   "Name": "Entities\\SpineEntity",

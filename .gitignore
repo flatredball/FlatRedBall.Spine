@@ -6,3 +6,6 @@ Samples/BuildingTheLibrary/SpineCSharpNet6/obj/*
 Samples/BuildingTheLibrary/MyProject/.config/dotnet-tools.json
 Source/obj/*
 Source/bin/*
+SpinePlugin/SpinePlugin/bin/*
+SpinePlugin/SpinePlugin/obj/*
+SpinePlugin/.vs/*
