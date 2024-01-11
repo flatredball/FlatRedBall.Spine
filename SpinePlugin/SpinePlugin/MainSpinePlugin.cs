@@ -1,4 +1,5 @@
-﻿using FlatRedBall.Glue.Plugins;
+﻿using FlatRedBall.Glue.Elements;
+using FlatRedBall.Glue.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,17 @@ namespace SpinePlugin
 
         public override void StartUp()
         {
-            
+            var assetTypeInfo = CreateSpineAssetTypeInfo();
+            this.AddAssetTypeInfo(assetTypeInfo);
+        }
+
+        private AssetTypeInfo CreateSpineAssetTypeInfo()
+        {
+            var assetTypeInfo = new AssetTypeInfo();
+            // fill in the AssetTypeInfo properties here:
+            // ...
+
+            return assetTypeInfo;
         }
     }
 }

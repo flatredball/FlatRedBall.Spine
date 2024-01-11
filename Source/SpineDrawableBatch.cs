@@ -34,12 +34,16 @@ namespace FlatRedBall.Spine
             return FromFile(skeletonFile.FullPath, atlasFile.FullPath);
         }
 
-        public static SpineDrawableBatch FromFile(string skeletonPath, string atlasPath) 
-        { 
+        public static SpineDrawableBatch FromFile(string skeletonPath, string atlasPath)
+        {
+            Atlas atlas = new Atlas(atlasPath, new XnaTextureLoader(FlatRedBallServices.GraphicsDevice));
+            return FromFile(skeletonPath, atlas);
+        }
 
+        public static SpineDrawableBatch FromFile(string skeletonPath, Atlas atlas)
+        { 
             SpineDrawableBatch toReturn = new SpineDrawableBatch();
 
-            Atlas atlas = new Atlas(atlasPath, new XnaTextureLoader(FlatRedBallServices.GraphicsDevice));
 
             float scale = 1 / 8f;
 
