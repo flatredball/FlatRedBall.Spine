@@ -5,21 +5,6 @@
   "Source": "GLUE",
   "CreatedByOtherEntities": true,
   "Is2D": true,
-  "ReferencedFiles": [
-    {
-      "Name": "Screens/GameScreen/SpineEffect.fx",
-      "Properties": [
-        {
-          "Name": "UseContentPipeline",
-          "Value": true,
-          "Type": "bool"
-        }
-      ],
-      "IsSharedStatic": true,
-      "RuntimeType": "Microsoft.Xna.Framework.Graphics.Effect",
-      "ProjectsToExcludeFrom": []
-    }
-  ],
   "CustomVariables": [
     {
       "Properties": [

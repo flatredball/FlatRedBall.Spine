@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\FlatRedBall\FRBDK\Glue\PluginLibraries\PluginLibraries.csproj" />
+    <ProjectReference Include="..\..\..\Gum\WpfDataUiCore\WpfDataUiCore.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

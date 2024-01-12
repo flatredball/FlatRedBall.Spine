@@ -167,5 +167,14 @@ namespace FlatRedBall.Spine
 
             SpriteManager.AddToLayer(this, layer);
         }
+
+        public SpineDrawableBatch Clone()
+        {
+            var clone = new SpineDrawableBatch();
+            clone.skeleton = skeleton;
+            AnimationStateData stateData = new AnimationStateData(clone.skeleton.Data);
+            clone.state = new AnimationState(stateData);
+            return clone;
+        }
     }
 }

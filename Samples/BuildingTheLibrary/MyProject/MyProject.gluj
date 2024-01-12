@@ -48,6 +48,13 @@
       "DestroyOnUnload": false,
       "HasPublicProperty": true,
       "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Screens/GameScreen/SpineEffect.fx",
+      "IsSharedStatic": true,
+      "DestroyOnUnload": false,
+      "HasPublicProperty": true,
+      "ProjectsToExcludeFrom": []
     }
   ],
   "GlobalContentSettingsSave": {},
@@ -101,6 +108,9 @@
     }
   ],
   "EntityReferences": [
+    {
+      "Name": "Entities\\CoinSpine"
+    },
     {
       "Name": "Entities\\Enemy"
     },

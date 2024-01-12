@@ -344,6 +344,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Level2Map</Name>
     </None>
+    <None Include="content\spine\data\coin.atlas">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>coin</Name>
+    </None>
+    <None Include="content\spine\data\coinpro.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>coinpro</Name>
+    </None>
     <None Include="content\standardtileset.tsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>standardtileset</Name>
@@ -356,6 +364,11 @@
   <ItemGroup>
     <Compile Include="DataTypes\PlatformerValues.Generated.cs" />
     <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
+    <Compile Include="DialogTreePlugin\RootObject.Generated.cs" />
+    <Compile Include="Entities\CoinSpine.cs" />
+    <Compile Include="Entities\CoinSpine.Generated.cs">
+      <DependentUpon>CoinSpine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\Enemy.Generated.cs">
       <DependentUpon>Enemy.cs</DependentUpon>
@@ -368,6 +381,7 @@
     <Compile Include="Entities\SpineEntity.Generated.cs">
       <DependentUpon>SpineEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factories\CoinSpineFactory.Generated.cs" />
     <Compile Include="Factories\EnemyFactory.Generated.cs" />
     <Compile Include="Factories\PlayerFactory.Generated.cs" />
     <Compile Include="Factories\SpineEntityFactory.Generated.cs" />

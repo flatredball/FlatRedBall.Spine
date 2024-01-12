@@ -13,6 +13,7 @@ using FlatRedBall.Math;
 using FlatRedBall.Math.Geometry;
 using FlatRedBall.Localization;
 using Microsoft.Xna.Framework;
+using FlatRedBall.Spine;
 
 
 
@@ -25,7 +26,10 @@ namespace MyProject.Screens
         void CustomInitialize()
         {
 
-
+            if (!SpineManager.IsInitialized)
+            {
+                SpineManager.Initialize(FlatRedBallServices.GraphicsDevice, GlobalContent.SpineEffect);
+            }
         }
 
         void CustomActivity(bool firstTimeCalled)
