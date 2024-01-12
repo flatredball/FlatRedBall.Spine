@@ -207,13 +207,13 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 64.0,
+              "Value": 224.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -64.0,
+              "Value": -80.0,
               "Time": 0.0
             }
           ],
@@ -277,90 +277,6 @@
           "GenerateTimedEmit": true
         },
         {
-          "InstanceName": "Enemy2",
-          "SourceClassType": "Entities\\Enemy",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 88.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -232.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Enemy",
-          "GenerateTimedEmit": true
-        },
-        {
-          "InstanceName": "Enemy3",
-          "SourceClassType": "Entities\\Enemy",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 172.8964,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -169.37439,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Enemy",
-          "GenerateTimedEmit": true
-        },
-        {
-          "InstanceName": "Enemy4",
-          "SourceClassType": "Entities\\Enemy",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 264.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -152.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Enemy",
-          "GenerateTimedEmit": true
-        },
-        {
           "InstanceName": "Enemy5",
           "SourceClassType": "Entities\\Enemy",
           "Properties": [
@@ -387,10 +303,32 @@
           "SourceType": 1,
           "SourceFile": "Entities\\Enemy",
           "GenerateTimedEmit": true
-        },
+        }
+      ]
+    },
+    {
+      "InstanceName": "CoinSpineList",
+      "SourceClassType": "FlatRedBall.Math.PositionedObjectList<T>",
+      "Properties": [
         {
-          "InstanceName": "Enemy6",
-          "SourceClassType": "Entities\\Enemy",
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [],
+      "SourceType": 2,
+      "SourceFile": "PositionedObjectList (Generic)",
+      "SourceClassGenericType": "Entities\\CoinSpine",
+      "ExposedInDerived": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true,
+      "DefinedByBase": true,
+      "InstantiatedByBase": true,
+      "ContainedObjects": [
+        {
+          "InstanceName": "CoinSpine1",
+          "SourceClassType": "Entities\\CoinSpine",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -402,23 +340,24 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 312.0,
+              "Value": 152.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -216.0,
+              "Value": -64.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\Enemy",
+          "SourceFile": "Entities\\CoinSpine",
+          "AttachToContainer": true,
           "GenerateTimedEmit": true
         },
         {
-          "InstanceName": "Enemy7",
-          "SourceClassType": "Entities\\Enemy",
+          "InstanceName": "CoinSpine2",
+          "SourceClassType": "Entities\\CoinSpine",
           "Properties": [
             {
               "Name": "AssociateWithFactory",
@@ -430,80 +369,18 @@
             {
               "Type": "float",
               "Member": "X",
-              "Value": 176.0,
+              "Value": 80.0,
               "Time": 0.0
             },
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -104.0,
+              "Value": -64.0,
               "Time": 0.0
             }
           ],
           "SourceType": 1,
-          "SourceFile": "Entities\\Enemy",
-          "GenerateTimedEmit": true
-        },
-        {
-          "InstanceName": "Enemy8",
-          "SourceClassType": "Entities\\Enemy",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 64.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -120.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Enemy",
-          "GenerateTimedEmit": true
-        },
-        {
-          "InstanceName": "Enemy9",
-          "SourceClassType": "Entities\\Enemy",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "Var1",
-              "Value": 3.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 224.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -192.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Enemy",
+          "SourceFile": "Entities\\CoinSpine",
           "GenerateTimedEmit": true
         }
       ]

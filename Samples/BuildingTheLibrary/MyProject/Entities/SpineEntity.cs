@@ -29,16 +29,14 @@ namespace MyProject.Entities
         /// </summary>
         private void CustomInitialize()
         {
-            if(!SpineManager.IsInitialized)
-            {
-                SpineManager.Initialize(FlatRedBallServices.GraphicsDevice, SpineEffect);
-            }
 
-            spineDrawableBatch = SpineDrawableBatch.FromFile(
-                assetsFolder + "spineboy-ess.json", assetsFolder + "spineboy.atlas");
 
-            spineDrawableBatch.AddToManagers(null);
-            spineDrawableBatch.AttachTo(this);
+            //spineDrawableBatch = SpineDrawableBatch.FromFile(
+            //    //assetsFolder + "spineboy-ess.json", assetsFolder + "spineboy.atlas");
+            //    "content/spine/data/coinpro.json", "content/spine/data/coin.atlas");
+
+            //spineDrawableBatch.AddToManagers(null);
+            //spineDrawableBatch.AttachTo(this);
         }
 
         private void CustomActivity()
@@ -49,7 +47,7 @@ namespace MyProject.Entities
 
         private void CustomDestroy()
         {
-
+            //SpriteManager.RemoveDrawableBatch(spineDrawableBatch);
 
         }
 
