@@ -28,7 +28,14 @@ namespace FlatRedBall.Spine
             var zoom = Camera.Main.DestinationRectangle.Height / Camera.Main.OrthogonalHeight;
 
             var effect = SkeletonRenderer.Effect;
-            effect.Parameters["World"].SetValue(Matrix.CreateTranslation(-Camera.Main.X * zoom, Camera.Main.Y * zoom, 0));
+
+
+
+            var world =
+                Matrix.CreateTranslation(-Camera.Main.X, Camera.Main.Y, 0) *
+                Matrix.CreateScale(zoom, zoom, 1) 
+                ;
+            effect.Parameters["World"].SetValue(world);
             effect.Parameters["View"].SetValue(Matrix.CreateLookAt(new Vector3(0.0f, 0.0f, 1.0f), Vector3.Zero, Vector3.Up));
 
             var graphicsDevice = FlatRedBallServices.GraphicsDevice;
