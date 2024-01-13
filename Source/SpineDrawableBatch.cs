@@ -1,5 +1,6 @@
 ﻿using FlatRedBall.Graphics;
 using FlatRedBall.IO;
+using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework.Graphics;
 using Spine;
 using System;
@@ -175,6 +176,11 @@ namespace FlatRedBall.Spine
             AnimationStateData stateData = new AnimationStateData(clone.skeleton.Data);
             clone.state = new AnimationState(stateData);
             return clone;
+        }
+
+        public void SetCollision(ShapeCollection shapeCollection, PositionedObject parent, bool createMissingShapes = false)
+        {
+
         }
     }
 }
