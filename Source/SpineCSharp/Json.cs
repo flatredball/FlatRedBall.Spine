@@ -1,43 +1,43 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated May 1, 2019. Replaces all prior versions.
+ * Last updated July 28, 2023. Replaces all prior versions.
  *
- * Copyright (c) 2013-2019, Esoteric Software LLC
+ * Copyright (c) 2013-2023, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
  * conditions of Section 2 of the Spine Editor License Agreement:
  * http://esotericsoftware.com/spine-editor-license
  *
- * Otherwise, it is permitted to integrate the Spine Runtimes into software
- * or otherwise create derivative works of the Spine Runtimes (collectively,
+ * Otherwise, it is permitted to integrate the Spine Runtimes into software or
+ * otherwise create derivative works of the Spine Runtimes (collectively,
  * "Products"), provided that each user of the Products must obtain their own
  * Spine Editor license and redistribution of the Products in any form must
  * include this license and copyright notice.
  *
- * THIS SOFTWARE IS PROVIDED BY ESOTERIC SOFTWARE LLC "AS IS" AND ANY EXPRESS
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
- * NO EVENT SHALL ESOTERIC SOFTWARE LLC BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, BUSINESS
- * INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * THE SPINE RUNTIMES ARE PROVIDED BY ESOTERIC SOFTWARE LLC "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL ESOTERIC SOFTWARE LLC BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES,
+ * BUSINESS INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE
+ * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
-using System.Collections;
-using System.Globalization;
-using System.Collections.Generic;
 
 namespace Spine {
 	public static class Json {
 		public static object Deserialize (TextReader text) {
-			var parser = new SharpJson.JsonDecoder();
+			SharpJson.JsonDecoder parser = new SharpJson.JsonDecoder();
 			parser.parseNumbersAsFloat = true;
 			return parser.Decode(text.ReadToEnd());
 		}
@@ -45,19 +45,17 @@ namespace Spine {
 }
 
 /**
- *
  * Copyright (c) 2016 Adriano Tinoco d'Oliveira Rezende
- * 
+ *
  * Based on the JSON parser by Patrick van Bergen
  * http://techblog.procurios.nl/k/news/view/14605/14863/how-do-i-write-my-own-parser-(for-json).html
  *
  * Changes made:
- * 
- * 	- Optimized parser speed (deserialize roughly near 3x faster than original)
- *  - Added support to handle lexer/parser error messages with line numbers
- *  - Added more fine grained control over type conversions during the parsing
- *  - Refactory API (Separate Lexer code from Parser code and the Encoder from Decoder)
  *
+ * - Optimized parser speed (deserialize roughly near 3x faster than original)
+ * - Added support to handle lexer/parser error messages with line numbers
+ * - Added more fine grained control over type conversions during the parsing
+ * - Refactory API (Separate Lexer code from Parser code and the Encoder from Decoder)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
  * and associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -71,12 +69,9 @@ namespace Spine {
  * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
  * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- * 
  */
-namespace SharpJson
-{
-	class Lexer
-	{
+namespace SharpJson {
+	class Lexer {
 		public enum Token {
 			None,
 			Null,
@@ -113,38 +108,35 @@ namespace SharpJson
 		bool success = true;
 		char[] stringBuffer = new char[4096];
 
-		public Lexer(string text)
-		{
+		public Lexer (string text) {
 			Reset();
 
 			json = text.ToCharArray();
 			parseNumbersAsFloat = false;
 		}
 
-		public void Reset()
-		{
+		public void Reset () {
 			index = 0;
 			lineNumber = 1;
 			success = true;
 		}
 
-		public string ParseString()
-		{
+		public string ParseString () {
 			int idx = 0;
 			StringBuilder builder = null;
-			
+
 			SkipWhiteSpaces();
-			
+
 			// "
 			char c = json[index++];
-			
+
 			bool failed = false;
 			bool complete = false;
-			
+
 			while (!complete && !failed) {
 				if (index == json.Length)
 					break;
-				
+
 				c = json[index++];
 				if (c == '"') {
 					complete = true;
@@ -152,9 +144,9 @@ namespace SharpJson
 				} else if (c == '\\') {
 					if (index == json.Length)
 						break;
-					
+
 					c = json[index++];
-					
+
 					switch (c) {
 					case '"':
 						stringBuffer[idx++] = '"';
@@ -168,8 +160,8 @@ namespace SharpJson
 					case 'b':
 						stringBuffer[idx++] = '\b';
 						break;
-					case'f':
-							stringBuffer[idx++] = '\f';
+					case 'f':
+						stringBuffer[idx++] = '\f';
 						break;
 					case 'n':
 						stringBuffer[idx++] = '\n';
@@ -183,11 +175,11 @@ namespace SharpJson
 					case 'u':
 						int remainingLength = json.Length - index;
 						if (remainingLength >= 4) {
-							var hex = new string(json, index, 4);
-							
+							string hex = new string(json, index, 4);
+
 							// XXX: handle UTF
-							stringBuffer[idx++] = (char) Convert.ToInt32(hex, 16);
-							
+							stringBuffer[idx++] = (char)Convert.ToInt32(hex, 16);
+
 							// skip 4 chars
 							index += 4;
 						} else {
@@ -198,80 +190,75 @@ namespace SharpJson
 				} else {
 					stringBuffer[idx++] = c;
 				}
-				
+
 				if (idx >= stringBuffer.Length) {
 					if (builder == null)
 						builder = new StringBuilder();
-					
+
 					builder.Append(stringBuffer, 0, idx);
 					idx = 0;
 				}
 			}
-			
+
 			if (!complete) {
 				success = false;
 				return null;
 			}
-			
+
 			if (builder != null)
-				return builder.ToString ();
+				return builder.ToString();
 			else
-				return new string (stringBuffer, 0, idx);
+				return new string(stringBuffer, 0, idx);
 		}
-		
-		string GetNumberString()
-		{
+
+		string GetNumberString () {
 			SkipWhiteSpaces();
 
 			int lastIndex = GetLastIndexOfNumber(index);
 			int charLength = (lastIndex - index) + 1;
-			
-			var result = new string (json, index, charLength);
-			
+
+			string result = new string(json, index, charLength);
+
 			index = lastIndex + 1;
-			
+
 			return result;
 		}
 
-		public float ParseFloatNumber()
-		{
+		public float ParseFloatNumber () {
 			float number;
-			var str = GetNumberString ();
-			
-			if (!float.TryParse (str, NumberStyles.Float, CultureInfo.InvariantCulture, out number))
+			string str = GetNumberString();
+
+			if (!float.TryParse(str, NumberStyles.Float, CultureInfo.InvariantCulture, out number))
 				return 0;
-			
+
 			return number;
 		}
 
-		public double ParseDoubleNumber()
-		{
+		public double ParseDoubleNumber () {
 			double number;
-			var str = GetNumberString ();
-			
+			string str = GetNumberString();
+
 			if (!double.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out number))
 				return 0;
-			
+
 			return number;
 		}
-		
-		int GetLastIndexOfNumber(int index)
-		{
+
+		int GetLastIndexOfNumber (int index) {
 			int lastIndex;
-			
+
 			for (lastIndex = index; lastIndex < json.Length; lastIndex++) {
 				char ch = json[lastIndex];
-				
+
 				if ((ch < '0' || ch > '9') && ch != '+' && ch != '-'
-				    && ch != '.' && ch != 'e' && ch != 'E')
+					&& ch != '.' && ch != 'e' && ch != 'E')
 					break;
 			}
-			
+
 			return lastIndex - 1;
 		}
 
-		void SkipWhiteSpaces()
-		{
+		void SkipWhiteSpaces () {
 			for (; index < json.Length; index++) {
 				char ch = json[index];
 
@@ -283,27 +270,24 @@ namespace SharpJson
 			}
 		}
 
-		public Token LookAhead()
-		{
+		public Token LookAhead () {
 			SkipWhiteSpaces();
 
 			int savedIndex = index;
 			return NextToken(json, ref savedIndex);
 		}
 
-		public Token NextToken()
-		{
+		public Token NextToken () {
 			SkipWhiteSpaces();
 			return NextToken(json, ref index);
 		}
 
-		static Token NextToken(char[] json, ref int index)
-		{
+		static Token NextToken (char[] json, ref int index) {
 			if (index == json.Length)
 				return Token.None;
-			
+
 			char c = json[index++];
-			
+
 			switch (c) {
 			case '{':
 				return Token.CurlyOpen;
@@ -317,8 +301,16 @@ namespace SharpJson
 				return Token.Comma;
 			case '"':
 				return Token.String;
-			case '0': case '1': case '2': case '3': case '4':
-			case '5': case '6': case '7': case '8': case '9':
+			case '0':
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+			case '6':
+			case '7':
+			case '8':
+			case '9':
 			case '-':
 				return Token.Number;
 			case ':':
@@ -326,38 +318,38 @@ namespace SharpJson
 			}
 
 			index--;
-			
+
 			int remainingLength = json.Length - index;
-			
+
 			// false
 			if (remainingLength >= 5) {
 				if (json[index] == 'f' &&
-				    json[index + 1] == 'a' &&
-				    json[index + 2] == 'l' &&
-				    json[index + 3] == 's' &&
-				    json[index + 4] == 'e') {
+					json[index + 1] == 'a' &&
+					json[index + 2] == 'l' &&
+					json[index + 3] == 's' &&
+					json[index + 4] == 'e') {
 					index += 5;
 					return Token.False;
 				}
 			}
-			
+
 			// true
 			if (remainingLength >= 4) {
 				if (json[index] == 't' &&
-				    json[index + 1] == 'r' &&
-				    json[index + 2] == 'u' &&
-				    json[index + 3] == 'e') {
+					json[index + 1] == 'r' &&
+					json[index + 2] == 'u' &&
+					json[index + 3] == 'e') {
 					index += 4;
 					return Token.True;
 				}
 			}
-			
+
 			// null
 			if (remainingLength >= 4) {
 				if (json[index] == 'n' &&
-				    json[index + 1] == 'u' &&
-				    json[index + 2] == 'l' &&
-				    json[index + 3] == 'l') {
+					json[index + 1] == 'u' &&
+					json[index + 2] == 'l' &&
+					json[index + 3] == 'l') {
 					index += 4;
 					return Token.Null;
 				}
@@ -367,8 +359,7 @@ namespace SharpJson
 		}
 	}
 
-	public class JsonDecoder
-	{
+	public class JsonDecoder {
 		public string errorMessage {
 			get;
 			private set;
@@ -381,14 +372,12 @@ namespace SharpJson
 
 		Lexer lexer;
 
-		public JsonDecoder()
-		{
+		public JsonDecoder () {
 			errorMessage = null;
 			parseNumbersAsFloat = false;
 		}
 
-		public object Decode(string text)
-		{
+		public object Decode (string text) {
 			errorMessage = null;
 
 			lexer = new Lexer(text);
@@ -397,21 +386,19 @@ namespace SharpJson
 			return ParseValue();
 		}
 
-		public static object DecodeText(string text)
-		{
-			var builder = new JsonDecoder();
+		public static object DecodeText (string text) {
+			JsonDecoder builder = new JsonDecoder();
 			return builder.Decode(text);
 		}
 
-		IDictionary<string, object> ParseObject()
-		{
-			var table = new Dictionary<string, object>();
+		IDictionary<string, object> ParseObject () {
+			Dictionary<string, object> table = new Dictionary<string, object>();
 
 			// {
 			lexer.NextToken();
 
 			while (true) {
-				var token = lexer.LookAhead();
+				Lexer.Token token = lexer.LookAhead();
 
 				switch (token) {
 				case Lexer.Token.None:
@@ -437,30 +424,29 @@ namespace SharpJson
 						TriggerError("Invalid token; expected ':'");
 						return null;
 					}
-					
+
 					// value
 					object value = ParseValue();
 
 					if (errorMessage != null)
 						return null;
-					
+
 					table[name] = value;
 					break;
 				}
 			}
-			
+
 			//return null; // Unreachable code
 		}
 
-		IList<object> ParseArray()
-		{
-			var array = new List<object>();
-			
+		IList<object> ParseArray () {
+			List<object> array = new List<object>();
+
 			// [
 			lexer.NextToken();
 
 			while (true) {
-				var token = lexer.LookAhead();
+				Lexer.Token token = lexer.LookAhead();
 
 				switch (token) {
 				case Lexer.Token.None:
@@ -482,12 +468,11 @@ namespace SharpJson
 					break;
 				}
 			}
-			
+
 			//return null; // Unreachable code
 		}
 
-		object ParseValue()
-		{
+		object ParseValue () {
 			switch (lexer.LookAhead()) {
 			case Lexer.Token.String:
 				return EvalLexer(lexer.ParseString());
@@ -517,14 +502,12 @@ namespace SharpJson
 			return null;
 		}
 
-		void TriggerError(string message)
-		{
+		void TriggerError (string message) {
 			errorMessage = string.Format("Error: '{0}' at line {1}",
-			                             message, lexer.lineNumber);
+										 message, lexer.lineNumber);
 		}
 
-		T EvalLexer<T>(T value)
-		{
+		T EvalLexer<T> (T value) {
 			if (lexer.hasError)
 				TriggerError("Lexical error ocurred");
 

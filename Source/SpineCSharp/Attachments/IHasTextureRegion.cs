@@ -27,22 +27,30 @@
  * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
+using System;
+using System.Text;
+
 namespace Spine {
-	public interface AttachmentLoader {
-		/// <return>May be null to not load any attachment.</return>
-		RegionAttachment NewRegionAttachment (Skin skin, string name, string path, Sequence sequence);
+	public interface IHasTextureRegion {
+		/// <summary>The name used to find the <see cref="Region"/></summary>
+		string Path { get; set; }
+		/// <summary>
+		/// Sets the region used to draw the attachment. After setting the region or if the region's properties are changed,
+		/// <see cref="UpdateRegion()"/> must be called.
+		/// </summary>
+		TextureRegion Region { get; set; }
 
-		/// <return>May be null to not load any attachment.</return>
-		MeshAttachment NewMeshAttachment (Skin skin, string name, string path, Sequence sequence);
+		/// <summary>
+		/// Updates any values the attachment calculates using the <see cref="Region"/>. Must be called after setting the
+		/// <see cref="Region"/> or if the region's properties are changed.
+		/// </summary>
+		void UpdateRegion ();
 
-		/// <return>May be null to not load any attachment.</return>
-		BoundingBoxAttachment NewBoundingBoxAttachment (Skin skin, string name);
+		float R { get; set; }
+		float G { get; set; }
+		float B { get; set; }
+		float A { get; set; }
 
-		/// <returns>May be null to not load any attachment</returns>
-		PathAttachment NewPathAttachment (Skin skin, string name);
-
-		PointAttachment NewPointAttachment (Skin skin, string name);
-
-		ClippingAttachment NewClippingAttachment (Skin skin, string name);
+		Sequence Sequence { get; set; }
 	}
 }

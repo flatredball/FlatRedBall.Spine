@@ -1,41 +1,43 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated May 1, 2019. Replaces all prior versions.
+ * Last updated July 28, 2023. Replaces all prior versions.
  *
- * Copyright (c) 2013-2019, Esoteric Software LLC
+ * Copyright (c) 2013-2023, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
  * conditions of Section 2 of the Spine Editor License Agreement:
  * http://esotericsoftware.com/spine-editor-license
  *
- * Otherwise, it is permitted to integrate the Spine Runtimes into software
- * or otherwise create derivative works of the Spine Runtimes (collectively,
+ * Otherwise, it is permitted to integrate the Spine Runtimes into software or
+ * otherwise create derivative works of the Spine Runtimes (collectively,
  * "Products"), provided that each user of the Products must obtain their own
  * Spine Editor license and redistribution of the Products in any form must
  * include this license and copyright notice.
  *
- * THIS SOFTWARE IS PROVIDED BY ESOTERIC SOFTWARE LLC "AS IS" AND ANY EXPRESS
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
- * NO EVENT SHALL ESOTERIC SOFTWARE LLC BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, BUSINESS
- * INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * THE SPINE RUNTIMES ARE PROVIDED BY ESOTERIC SOFTWARE LLC "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL ESOTERIC SOFTWARE LLC BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES,
+ * BUSINESS INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE
+ * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
 using System;
 
 namespace Spine {
-	/// <summary>>An attachment with vertices that are transformed by one or more bones and can be deformed by a slot's vertices.</summary> 
-	public class VertexAttachment : Attachment {
+	/// <summary>>An attachment with vertices that are transformed by one or more bones and can be deformed by a slot's
+	/// <see cref="Slot.Deform"/>.</summary>
+	public abstract class VertexAttachment : Attachment {
 		static int nextID = 0;
 		static readonly Object nextIdLock = new Object();
 
 		internal readonly int id;
+		internal VertexAttachment timelineAttachment;
 		internal int[] bones;
 		internal float[] vertices;
 		internal int worldVerticesLength;
@@ -45,29 +47,61 @@ namespace Spine {
 		public int[] Bones { get { return bones; } set { bones = value; } }
 		public float[] Vertices { get { return vertices; } set { vertices = value; } }
 		public int WorldVerticesLength { get { return worldVerticesLength; } set { worldVerticesLength = value; } }
+		///<summary>Timelines for the timeline attachment are also applied to this attachment.
+		/// May be null if no attachment-specific timelines should be applied.</summary>
+		public VertexAttachment TimelineAttachment { get { return timelineAttachment; } set { timelineAttachment = value; } }
 
 		public VertexAttachment (string name)
 			: base(name) {
 
 			lock (VertexAttachment.nextIdLock) {
-				id = (VertexAttachment.nextID++ & 65535) << 11;
+				id = VertexAttachment.nextID++;
 			}
+			timelineAttachment = this;
+		}
+
+		/// <summary>Copy constructor.</summary>
+		public VertexAttachment (VertexAttachment other)
+			: base(other) {
+
+			lock (VertexAttachment.nextIdLock) {
+				id = VertexAttachment.nextID++;
+			}
+			timelineAttachment = other.timelineAttachment;
+			if (other.bones != null) {
+				bones = new int[other.bones.Length];
+				Array.Copy(other.bones, 0, bones, 0, bones.Length);
+			} else
+				bones = null;
+
+			if (other.vertices != null) {
+				vertices = new float[other.vertices.Length];
+				Array.Copy(other.vertices, 0, vertices, 0, vertices.Length);
+			} else
+				vertices = null;
+
+			worldVerticesLength = other.worldVerticesLength;
 		}
 
 		public void ComputeWorldVertices (Slot slot, float[] worldVertices) {
 			ComputeWorldVertices(slot, 0, worldVerticesLength, worldVertices, 0);
 		}
 
-		/// <summary>Transforms local vertices to world coordinates.</summary>
+		/// <summary>
+		/// Transforms the attachment's local <see cref="Vertices"/> to world coordinates. If the slot's <see cref="Slot.Deform"/> is
+		/// not empty, it is used to deform the vertices.
+		/// <para />
+		/// See <a href="http://esotericsoftware.com/spine-runtime-skeletons#World-transforms">World transforms</a> in the Spine
+		/// Runtimes Guide.
+		/// </summary>
 		/// <param name="start">The index of the first <see cref="Vertices"/> value to transform. Each vertex has 2 values, x and y.</param>
 		/// <param name="count">The number of world vertex values to output. Must be less than or equal to <see cref="WorldVerticesLength"/> - start.</param>
 		/// <param name="worldVertices">The output world vertices. Must have a length greater than or equal to <paramref name="offset"/> + <paramref name="count"/>.</param>
 		/// <param name="offset">The <paramref name="worldVertices"/> index to begin writing values.</param>
 		/// <param name="stride">The number of <paramref name="worldVertices"/> entries between the value pairs written.</param>
-		public void ComputeWorldVertices (Slot slot, int start, int count, float[] worldVertices, int offset, int stride = 2) {
+		public virtual void ComputeWorldVertices (Slot slot, int start, int count, float[] worldVertices, int offset, int stride = 2) {
 			count = offset + (count >> 1) * stride;
-			Skeleton skeleton = slot.bone.skeleton;
-			var deformArray = slot.attachmentVertices;
+			ExposedList<float> deformArray = slot.deform;
 			float[] vertices = this.vertices;
 			int[] bones = this.bones;
 			if (bones == null) {
@@ -88,7 +122,7 @@ namespace Spine {
 				v += n + 1;
 				skip += n;
 			}
-			var skeletonBones = skeleton.bones.Items;
+			Bone[] skeletonBones = slot.bone.skeleton.bones.Items;
 			if (deformArray.Count == 0) {
 				for (int w = offset, b = skip * 3; w < count; w += stride) {
 					float wx = 0, wy = 0;
@@ -120,10 +154,5 @@ namespace Spine {
 				}
 			}
 		}
-
-		/// <summary>Returns true if a deform originally applied to the specified attachment should be applied to this attachment.</summary>
-		virtual public bool ApplyDeform (VertexAttachment sourceAttachment) {
-			return this == sourceAttachment;
-		}			
 	}
 }

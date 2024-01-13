@@ -1,30 +1,30 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated May 1, 2019. Replaces all prior versions.
+ * Last updated July 28, 2023. Replaces all prior versions.
  *
- * Copyright (c) 2013-2019, Esoteric Software LLC
+ * Copyright (c) 2013-2023, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
  * conditions of Section 2 of the Spine Editor License Agreement:
  * http://esotericsoftware.com/spine-editor-license
  *
- * Otherwise, it is permitted to integrate the Spine Runtimes into software
- * or otherwise create derivative works of the Spine Runtimes (collectively,
+ * Otherwise, it is permitted to integrate the Spine Runtimes into software or
+ * otherwise create derivative works of the Spine Runtimes (collectively,
  * "Products"), provided that each user of the Products must obtain their own
  * Spine Editor license and redistribution of the Products in any form must
  * include this license and copyright notice.
  *
- * THIS SOFTWARE IS PROVIDED BY ESOTERIC SOFTWARE LLC "AS IS" AND ANY EXPRESS
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
- * NO EVENT SHALL ESOTERIC SOFTWARE LLC BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, BUSINESS
- * INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * THE SPINE RUNTIMES ARE PROVIDED BY ESOTERIC SOFTWARE LLC "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL ESOTERIC SOFTWARE LLC BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES,
+ * BUSINESS INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE
+ * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
 using System;
@@ -57,7 +57,7 @@ namespace Spine {
 			clip.ComputeWorldVertices(slot, 0, n, vertices, 0, 2);
 			MakeClockwise(clippingPolygon);
 			clippingPolygons = triangulator.Decompose(clippingPolygon, triangulator.Triangulate(clippingPolygon));
-			foreach (var polygon in clippingPolygons) {
+			foreach (ExposedList<float> polygon in clippingPolygons) {
 				MakeClockwise(polygon);
 				polygon.Add(polygon.Items[0]);
 				polygon.Add(polygon.Items[1]);
@@ -80,8 +80,8 @@ namespace Spine {
 
 		public void ClipTriangles (float[] vertices, int verticesLength, int[] triangles, int trianglesLength, float[] uvs) {
 			ExposedList<float> clipOutput = this.clipOutput, clippedVertices = this.clippedVertices;
-			var clippedTriangles = this.clippedTriangles;
-			var polygons = clippingPolygons.Items;
+			ExposedList<int> clippedTriangles = this.clippedTriangles;
+			ExposedList<float>[] polygons = clippingPolygons.Items;
 			int polygonsCount = clippingPolygons.Count;
 
 			int index = 0;
@@ -137,8 +137,7 @@ namespace Spine {
 							s += 3;
 						}
 						index += clipOutputCount + 1;
-					}
-					else {
+					} else {
 						float[] clippedVerticesItems = clippedVertices.Resize(s + 3 * 2).Items;
 						float[] clippedUVsItems = clippedUVs.Resize(s + 3 * 2).Items;
 						clippedVerticesItems[s] = x1;
@@ -171,8 +170,8 @@ namespace Spine {
 		/** Clips the input triangle against the convex, clockwise clipping area. If the triangle lies entirely within the clipping
 		 * area, false is returned. The clipping area must duplicate the first vertex at the end of the vertices list. */
 		internal bool Clip (float x1, float y1, float x2, float y2, float x3, float y3, ExposedList<float> clippingArea, ExposedList<float> output) {
-			var originalOutput = output;
-			var clipped = false;
+			ExposedList<float> originalOutput = output;
+			bool clipped = false;
 
 			// Avoid copy at the end.
 			ExposedList<float> input = null;
@@ -224,8 +223,7 @@ namespace Spine {
 							output.Add(edgeX);
 							output.Add(edgeY);
 						}
-					}
-					else if (side2) { // v1 outside, v2 inside
+					} else if (side2) { // v1 outside, v2 inside
 						float c0 = inputY2 - inputY, c2 = inputX2 - inputX;
 						float s = c0 * (edgeX2 - edgeX) - c2 * (edgeY2 - edgeY);
 						if (Math.Abs(s) > 0.000001f) {
@@ -251,7 +249,7 @@ namespace Spine {
 				output.Add(output.Items[1]);
 
 				if (i == clippingVerticesLast) break;
-				var temp = output;
+				ExposedList<float> temp = output;
 				output = input;
 				output.Clear();
 				input = temp;
@@ -259,12 +257,10 @@ namespace Spine {
 
 			if (originalOutput != output) {
 				originalOutput.Clear();
-				for (int i = 0, n = output.Count - 2; i < n; i++) {
+				for (int i = 0, n = output.Count - 2; i < n; i++)
 					originalOutput.Add(output.Items[i]);
-				}
-			} else {
+			} else
 				originalOutput.Resize(originalOutput.Count - 2);
-			}
 
 			return clipped;
 		}

@@ -27,22 +27,23 @@
  * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
+#if (UNITY_5 || UNITY_5_3_OR_NEWER || UNITY_WSA || UNITY_WP8 || UNITY_WP8_1)
+#define IS_UNITY
+#endif
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+
+
 namespace Spine {
-	public interface AttachmentLoader {
-		/// <return>May be null to not load any attachment.</return>
-		RegionAttachment NewRegionAttachment (Skin skin, string name, string path, Sequence sequence);
+	public class TextureRegion {
+		public int width, height;
+		public float u, v, u2, v2;
 
-		/// <return>May be null to not load any attachment.</return>
-		MeshAttachment NewMeshAttachment (Skin skin, string name, string path, Sequence sequence);
-
-		/// <return>May be null to not load any attachment.</return>
-		BoundingBoxAttachment NewBoundingBoxAttachment (Skin skin, string name);
-
-		/// <returns>May be null to not load any attachment</returns>
-		PathAttachment NewPathAttachment (Skin skin, string name);
-
-		PointAttachment NewPointAttachment (Skin skin, string name);
-
-		ClippingAttachment NewClippingAttachment (Skin skin, string name);
+		virtual public int OriginalWidth { get { return width; } }
+		virtual public int OriginalHeight { get { return height; } }
 	}
 }

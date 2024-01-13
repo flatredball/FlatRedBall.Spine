@@ -27,22 +27,35 @@
  * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
+using System;
+using System.Collections.Generic;
+
 namespace Spine {
-	public interface AttachmentLoader {
-		/// <return>May be null to not load any attachment.</return>
-		RegionAttachment NewRegionAttachment (Skin skin, string name, string path, Sequence sequence);
+	/// <summary>The base class for all constraint datas.</summary>
+	public abstract class ConstraintData {
+		internal readonly string name;
+		internal int order;
+		internal bool skinRequired;
 
-		/// <return>May be null to not load any attachment.</return>
-		MeshAttachment NewMeshAttachment (Skin skin, string name, string path, Sequence sequence);
+		public ConstraintData (string name) {
+			if (name == null) throw new ArgumentNullException("name", "name cannot be null.");
+			this.name = name;
+		}
 
-		/// <return>May be null to not load any attachment.</return>
-		BoundingBoxAttachment NewBoundingBoxAttachment (Skin skin, string name);
+		/// <summary> The constraint's name, which is unique across all constraints in the skeleton of the same type.</summary>
+		public string Name { get { return name; } }
 
-		/// <returns>May be null to not load any attachment</returns>
-		PathAttachment NewPathAttachment (Skin skin, string name);
+		///<summary>The ordinal of this constraint for the order a skeleton's constraints will be applied by
+		/// <see cref="Skeleton.UpdateWorldTransform()"/>.</summary>
+		public int Order { get { return order; } set { order = value; } }
 
-		PointAttachment NewPointAttachment (Skin skin, string name);
+		///<summary>When true, <see cref="Skeleton.UpdateWorldTransform()"/> only updates this constraint if the <see cref="Skeleton.Skin"/> contains
+		/// this constraint.</summary>
+		///<seealso cref="Skin.Constraints"/>
+		public bool SkinRequired { get { return skinRequired; } set { skinRequired = value; } }
 
-		ClippingAttachment NewClippingAttachment (Skin skin, string name);
+		override public string ToString () {
+			return name;
+		}
 	}
 }

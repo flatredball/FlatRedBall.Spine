@@ -1,4 +1,4 @@
-﻿//
+//
 // System.Collections.Generic.List
 //
 // Authors:
@@ -17,10 +17,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -90,12 +90,9 @@ namespace Spine {
 
 		public ExposedList<T> Resize (int newSize) {
 			int itemsLength = Items.Length;
-			var oldItems = Items;
+			T[] oldItems = Items;
 			if (newSize > itemsLength) {
 				Array.Resize(ref Items, newSize);
-//				var newItems = new T[newSize];
-//				Array.Copy(oldItems, newItems, Count);
-//				Items = newItems;
 			} else if (newSize < itemsLength) {
 				// Allow nulling of T reference type to allow GC.
 				for (int i = newSize; i < itemsLength; i++)
@@ -141,6 +138,23 @@ namespace Spine {
 			}
 		}
 
+		// Additional overload provided because ExposedList<T> only implements IEnumerable<T>,
+		// leading to sub-optimal behavior: It grows multiple times as it assumes not
+		// to know the final size ahead of insertion.
+		public void AddRange (ExposedList<T> list) {
+			CheckCollection(list);
+
+			int collectionCount = list.Count;
+			if (collectionCount == 0)
+				return;
+
+			GrowIfNeeded(collectionCount);
+			list.CopyTo(Items, Count);
+			Count += collectionCount;
+
+			version++;
+		}
+
 		public void AddRange (IEnumerable<T> collection) {
 			CheckCollection(collection);
 
@@ -181,10 +195,11 @@ namespace Spine {
 			if (converter == null)
 				throw new ArgumentNullException("converter");
 			ExposedList<TOutput> u = new ExposedList<TOutput>(Count);
-			for (int i = 0; i < Count; i++)
-				u.Items[i] = converter(Items[i]);
-
 			u.Count = Count;
+			T[] items = Items;
+			TOutput[] uItems = u.Items;
+			for (int i = 0; i < Count; i++)
+				uItems[i] = converter(items[i]);
 			return u;
 		}
 
@@ -200,8 +215,6 @@ namespace Spine {
 			CheckRange(index, count);
 			Array.Copy(Items, index, array, arrayIndex, count);
 		}
-
-
 
 		public bool Exists (Predicate<T> match) {
 			CheckMatch(match);
@@ -285,7 +298,7 @@ namespace Spine {
 
 		private int GetLastIndex (int startIndex, int count, Predicate<T> match) {
 			// unlike FindLastIndex, takes regular params for search range
-			for (int i = startIndex + count; i != startIndex; )
+			for (int i = startIndex + count; i != startIndex;)
 				if (match(Items[--i]))
 					return i;
 			return -1;
@@ -466,7 +479,7 @@ namespace Spine {
 		public T Pop () {
 			if (Count == 0)
 				throw new InvalidOperationException("List is empty. Nothing to pop.");
-			
+
 			int i = Count - 1;
 			T item = Items[i];
 			Items[i] = default(T);
