@@ -44,6 +44,8 @@ namespace SpinePlugin
         private void AssignEvents()
         {
             this.ReactToItemsSelected += HandleItemSelected;
+            this.AddEventsForObject += EventManager.HandleAddEventsForObject;
+            this.GetEventSignatureArgs += EventManager.HandleGetEventSignatureArgs;
         }
 
         private void HandleItemSelected(List<ITreeNode> list)
@@ -104,7 +106,7 @@ namespace SpinePlugin
 
         private void CreateAssetTypeInfos()
         {
-            this.AddAssetTypeInfo(AssetTypeInfoManager.CreateSpineDrawableBatchAssetTypeInfo());
+            this.AddAssetTypeInfo(AssetTypeInfoManager.SpineDrawableBatchAssetTypeInfo);
             this.AddAssetTypeInfo(AssetTypeInfoManager.AtlasAssetTypeInfo);
         }
 

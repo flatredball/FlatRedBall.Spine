@@ -12,8 +12,13 @@ namespace SpinePlugin.Managers
     internal static class AssetTypeInfoManager
     {
         static AssetTypeInfo atlasAssetTypeInfo;
+        
         public static AssetTypeInfo AtlasAssetTypeInfo =>
             atlasAssetTypeInfo = atlasAssetTypeInfo ?? CreateAtlasAssetTypeInfo();
+
+        static AssetTypeInfo spineDrawableBatchAssetTypeInfo;
+        public static AssetTypeInfo SpineDrawableBatchAssetTypeInfo =>
+            spineDrawableBatchAssetTypeInfo = spineDrawableBatchAssetTypeInfo ?? CreateSpineDrawableBatchAssetTypeInfo();
 
         static AssetTypeInfo CreateAtlasAssetTypeInfo()
         {
@@ -38,7 +43,7 @@ namespace SpinePlugin.Managers
 
         }
 
-        public static AssetTypeInfo CreateSpineDrawableBatchAssetTypeInfo()
+        private static AssetTypeInfo CreateSpineDrawableBatchAssetTypeInfo()
         {
             var ati = new AssetTypeInfo();
             ati.QualifiedRuntimeTypeName = new PlatformSpecificType

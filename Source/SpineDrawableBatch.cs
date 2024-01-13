@@ -1,4 +1,5 @@
 ﻿using FlatRedBall.Graphics;
+using FlatRedBall.Instructions;
 using FlatRedBall.IO;
 using FlatRedBall.Math.Geometry;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,17 +14,38 @@ namespace FlatRedBall.Spine
 {
     public class SpineDrawableBatch : PositionedObject, IDrawableBatch
     {
-
         Skeleton skeleton;
         AnimationState state;
-        //Slot headSlot;
+        public AnimationState AnimationState
+        {
+            get => state;
+            private set
+            {
+                if(value == null)
+                {
+                    throw new InvalidOperationException("Can't set AnimationState to null");
+                }
 
-        public AnimationState AnimationState => state;
+                state = value;
+
+                state.Event += (sender, args) => Event?.Invoke(sender, args);
+            }
+        }
+
+        public event global::Spine.AnimationState.TrackEntryEventDelegate Event;
+
         public Skeleton Skeleton => skeleton;
 
-        SkeletonBounds bounds = new SkeletonBounds();
 
-        public bool UpdateEveryFrame => false;
+
+        public float AnimationSpeed { get; set; } = 1;
+
+        public float ScaleX { get; set; } = 1;
+        public float ScaleY { get; set; } = 1;
+
+        public bool UpdateEveryFrame => true;
+
+        SkeletonBounds bounds = new SkeletonBounds();
 
         /// <summary>
         /// Don't call this, instead call SpriteManager.RemoveDrawableBatch
@@ -48,7 +70,6 @@ namespace FlatRedBall.Spine
         { 
             SpineDrawableBatch toReturn = new SpineDrawableBatch();
 
-
             float scale = 1 / 8f;
 
             SkeletonData skeletonData;
@@ -67,6 +88,7 @@ namespace FlatRedBall.Spine
                 json.Scale = scale;
                 skeletonData = json.ReadSkeletonData(skeletonPath);
             }
+
             toReturn.skeleton = new Skeleton(skeletonData);
 
             // set skin?
@@ -74,9 +96,7 @@ namespace FlatRedBall.Spine
 
             // Define mixing between animations.
             AnimationStateData stateData = new AnimationStateData(toReturn.skeleton.Data);
-            toReturn.state = new AnimationState(stateData);
-
-            
+            toReturn.AnimationState = new AnimationState(stateData);
 
             //if (name == "spineboy-ess")
             //{
@@ -119,9 +139,6 @@ namespace FlatRedBall.Spine
             return toReturn;
         }
 
-        public float ScaleX { get; set; } = 1;
-        public float ScaleY { get; set; } = 1;
-
         public void Draw(Camera camera)
         {
             skeleton.ScaleX = ScaleX;
@@ -129,7 +146,6 @@ namespace FlatRedBall.Spine
 
             skeleton.X = (X) + camera.OrthogonalWidth/(2.0f);
             skeleton.Y = (-Y ) + camera.OrthogonalHeight/(2.0f);
-            state.Update(TimeManager.SecondDifference);
             state.Apply(skeleton);
             skeleton.UpdateWorldTransform();
 
@@ -161,7 +177,7 @@ namespace FlatRedBall.Spine
 
         public void Update()
         {
-
+            state.Update(TimeManager.SecondDifference * AnimationSpeed);
         }
 
         public void AddToManagers(Layer layer)
@@ -183,7 +199,7 @@ namespace FlatRedBall.Spine
             var clone = new SpineDrawableBatch();
             clone.skeleton = skeleton;
             AnimationStateData stateData = new AnimationStateData(clone.skeleton.Data);
-            clone.state = new AnimationState(stateData);
+            clone.AnimationState = new AnimationState(stateData);
             return clone;
         }
 
@@ -243,6 +259,13 @@ namespace FlatRedBall.Spine
             Animation foundAnimation = GetAnimationInternal(animationName);
 
             AnimationState.SetAnimation(0, foundAnimation, loop: true);
+        }
+
+        public override void Pause(InstructionList instructions)
+        {
+            var oldSpeed = AnimationSpeed;
+            instructions.Add(new DelegateInstruction(() => this.AnimationSpeed = oldSpeed));
+            AnimationSpeed = 0;
         }
 
         private Animation GetAnimationInternal(string animationName)
