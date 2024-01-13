@@ -1,30 +1,30 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated May 1, 2019. Replaces all prior versions.
+ * Last updated July 28, 2023. Replaces all prior versions.
  *
- * Copyright (c) 2013-2019, Esoteric Software LLC
+ * Copyright (c) 2013-2023, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
  * conditions of Section 2 of the Spine Editor License Agreement:
  * http://esotericsoftware.com/spine-editor-license
  *
- * Otherwise, it is permitted to integrate the Spine Runtimes into software
- * or otherwise create derivative works of the Spine Runtimes (collectively,
+ * Otherwise, it is permitted to integrate the Spine Runtimes into software or
+ * otherwise create derivative works of the Spine Runtimes (collectively,
  * "Products"), provided that each user of the Products must obtain their own
  * Spine Editor license and redistribution of the Products in any form must
  * include this license and copyright notice.
  *
- * THIS SOFTWARE IS PROVIDED BY ESOTERIC SOFTWARE LLC "AS IS" AND ANY EXPRESS
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
- * NO EVENT SHALL ESOTERIC SOFTWARE LLC BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, BUSINESS
- * INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * THE SPINE RUNTIMES ARE PROVIDED BY ESOTERIC SOFTWARE LLC "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL ESOTERIC SOFTWARE LLC BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES,
+ * BUSINESS INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE
+ * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
 using Microsoft.Xna.Framework;
@@ -38,14 +38,14 @@ namespace Spine {
 	public class SkeletonDebugRenderer {
 		ShapeRenderer renderer;
 
-		private static Color boneLineColor = new Color(1f, 0f, 0f, 1f);
-		private static Color boneOriginColor = new Color(0f, 1f, 0f, 1f);
-		private static Color attachmentLineColor = new Color(0f, 0f, 1f, 0.5f);
-		private static Color triangleLineColor = new Color(1f, 0.64f, 0f, 0.5f);
-		private static Color pathColor = new Color(1f, 0.5f, 0f, 1f);
-		private static Color clipColor = new Color(0.8f, 0f, 0f, 1f);
-		private static Color clipDecomposedColor = new Color(0.8f, 0.8f, 0f, 1f);
-		private static Color aabbColor = new Color(0f, 1f, 0f, 0.5f);
+		public static Color boneLineColor = new Color(1f, 0f, 0f, 1f);
+		public static Color boneOriginColor = new Color(0f, 1f, 0f, 1f);
+		public static Color attachmentLineColor = new Color(0f, 0f, 1f, 0.5f);
+		public static Color triangleLineColor = new Color(1f, 0.64f, 0f, 0.5f);
+		public static Color pathColor = new Color(1f, 0.5f, 0f, 1f);
+		public static Color clipColor = new Color(0.8f, 0f, 0f, 1f);
+		public static Color clipDecomposedColor = new Color(0.8f, 0.8f, 0f, 1f);
+		public static Color aabbColor = new Color(0f, 1f, 0f, 0.5f);
 
 		public BasicEffect Effect { get { return renderer.Effect; } set { renderer.Effect = value; } }
 		public bool DrawBones { get; set; }
@@ -57,7 +57,7 @@ namespace Spine {
 		public bool DrawClipping { get; set; }
 		public bool DrawClippingDecomposed { get; set; }
 		public bool DrawSkeletonXY { get; set; }
-		public void DisableAll() {
+		public void DisableAll () {
 			DrawBones = false;
 			DrawRegionAttachments = false;
 			DrawBoundingBoxes = false;
@@ -68,7 +68,7 @@ namespace Spine {
 			DrawSkeletonXY = false;
 		}
 
-		public void EnableAll() {
+		public void EnableAll () {
 			DrawBones = true;
 			DrawRegionAttachments = true;
 			DrawBoundingBoxes = true;
@@ -88,11 +88,11 @@ namespace Spine {
 			EnableAll();
 		}
 
-		public void Begin() {
+		public void Begin () {
 			renderer.Begin();
 		}
 
-		public void Draw(Skeleton skeleton) {
+		public void Draw (Skeleton skeleton) {
 			var skeletonX = skeleton.X;
 			var skeletonY = skeleton.Y;
 
@@ -104,7 +104,7 @@ namespace Spine {
 					if (bone.Parent == null) continue;
 					var x = bone.Data.Length * bone.A + bone.WorldX;
 					var y = bone.Data.Length * bone.C + bone.WorldY;
-					renderer.Line(bone.WorldX, bone.WorldY, x, y);					
+					renderer.Line(bone.WorldX, bone.WorldY, x, y);
 				}
 				if (DrawSkeletonXY) renderer.X(skeletonX, skeletonY, 4);
 			}
@@ -116,9 +116,9 @@ namespace Spine {
 					var slot = slots.Items[i];
 					var attachment = slot.Attachment;
 					if (attachment is RegionAttachment) {
-						var regionAttachment = (RegionAttachment) attachment;
+						var regionAttachment = (RegionAttachment)attachment;
 						var vertices = this.vertices;
-						regionAttachment.ComputeWorldVertices(slot.Bone, vertices, 0, 2);
+						regionAttachment.ComputeWorldVertices(slot, vertices, 0, 2);
 						renderer.Line(vertices[0], vertices[1], vertices[2], vertices[3]);
 						renderer.Line(vertices[2], vertices[3], vertices[4], vertices[5]);
 						renderer.Line(vertices[4], vertices[5], vertices[6], vertices[7]);
@@ -221,7 +221,7 @@ namespace Spine {
 			}
 		}
 
-		public void End() {
+		public void End () {
 			renderer.End();
 		}
 	}

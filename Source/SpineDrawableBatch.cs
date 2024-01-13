@@ -18,6 +18,9 @@ namespace FlatRedBall.Spine
         AnimationState state;
         //Slot headSlot;
 
+        public AnimationState AnimationState => state;
+        public Skeleton Skeleton => skeleton;
+
         SkeletonBounds bounds = new SkeletonBounds();
 
         public bool UpdateEveryFrame => false;
@@ -73,6 +76,8 @@ namespace FlatRedBall.Spine
             AnimationStateData stateData = new AnimationStateData(toReturn.skeleton.Data);
             toReturn.state = new AnimationState(stateData);
 
+            
+
             //if (name == "spineboy-ess")
             //{
             //    skeleton.SetAttachment("head-bb", "head"); // Activate the head BoundingBoxAttachment.
@@ -109,14 +114,19 @@ namespace FlatRedBall.Spine
             //    state.SetAnimation(0, "walk", true);
             //}
 
-            toReturn.skeleton.ScaleY = -1;
 
             //headSlot = skeleton.FindSlot("head");
             return toReturn;
         }
 
+        public float ScaleX { get; set; } = 1;
+        public float ScaleY { get; set; } = 1;
+
         public void Draw(Camera camera)
         {
+            skeleton.ScaleX = ScaleX;
+            skeleton.ScaleY = ScaleY;
+
             skeleton.X = (X) + camera.OrthogonalWidth/(2.0f);
             skeleton.Y = (-Y ) + camera.OrthogonalHeight/(2.0f);
             state.Update(TimeManager.SecondDifference);
@@ -132,7 +142,6 @@ namespace FlatRedBall.Spine
             skeletonRenderer.Draw(skeleton);
             skeletonRenderer.End();
 
-            bounds.Update(skeleton, true);
             //MouseState mouse = Mouse.GetState();
             //if (headSlot != null)
             //{
@@ -180,6 +189,84 @@ namespace FlatRedBall.Spine
 
         public void SetCollision(ShapeCollection shapeCollection, PositionedObject parent, bool createMissingShapes = false)
         {
+            bounds.Update(skeleton, true);
+
+            var count = bounds.BoundingBoxes.Count;
+
+            for(int spinePolygonIndex = 0; spinePolygonIndex < count; spinePolygonIndex++)
+            {
+                var spineBoundingBox = bounds.BoundingBoxes.Items[spinePolygonIndex];
+                var spinePolygon = bounds.Polygons.Items[spinePolygonIndex];
+
+                var frbPolygon = shapeCollection.Polygons.FindByName(spineBoundingBox.Name);
+
+                if(createMissingShapes && frbPolygon == null)
+                {
+                    frbPolygon = new FlatRedBall.Math.Geometry.Polygon();
+                    frbPolygon.Name = spineBoundingBox.Name;
+                    shapeCollection.Polygons.Add(frbPolygon);
+                    ShapeManager.AddPolygon(frbPolygon);
+                    frbPolygon.Visible = true;
+                    frbPolygon.AttachTo(parent);
+                }
+
+                if(frbPolygon != null)
+                {
+                    if(frbPolygon.Points == null || (2*frbPolygon.Points.Count - 1) != spineBoundingBox.Vertices.Length)
+                    {
+                        frbPolygon.Points = new Point[1 + spineBoundingBox.Vertices.Length/2];
+                    }
+
+                    for(int i = 0; i < frbPolygon.Points.Count-1; i++)
+                    {
+                        var x = spineBoundingBox.Vertices[i * 2];
+                        var y = spineBoundingBox.Vertices[i * 2 + 1];
+
+                        var worldX = spinePolygon.Vertices[i * 2];
+                        var worldY = spinePolygon.Vertices[i * 2 + 1];
+
+                        //frbPolygon.SetPoint(i, x*ScaleX, y*ScaleY);
+                        frbPolygon.SetPoint(i, worldX - skeleton.X, -1*worldY + skeleton.Y);
+
+                    }
+                    frbPolygon.SetPoint(frbPolygon.Points.Count - 1, frbPolygon.Points[0]);
+                    frbPolygon.ForceUpdateDependencies();
+                }
+            }
+
+        }
+
+        // Eventually we want to support IAnimatable interface, but for now we'll mimic it until we're ready
+
+        public void PlayAnimation(string animationName, bool loop=true)
+        {
+            Animation foundAnimation = GetAnimationInternal(animationName);
+
+            AnimationState.SetAnimation(0, foundAnimation, loop: true);
+        }
+
+        private Animation GetAnimationInternal(string animationName)
+        {
+            var foundAnimation = AnimationState.Data.SkeletonData.Animations.Find(item => item.Name == animationName);
+
+            if (foundAnimation == null)
+            {
+                var message = $"Could not find an animation named {animationName}.  Found:\n";
+                foreach (var animation in AnimationState.Data.SkeletonData.Animations)
+                {
+                    message += "  " + animation.Name + "\n";
+                }
+                throw new ArgumentException(message);
+            }
+
+            return foundAnimation;
+        }
+
+        public async Task PlayAnimationAsync(string animationName)
+        {
+            Animation foundAnimation = GetAnimationInternal(animationName);
+            AnimationState.SetAnimation(0, foundAnimation, loop: false);
+            await TimeManager.DelaySeconds(foundAnimation.Duration);
 
         }
     }

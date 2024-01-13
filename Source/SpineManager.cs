@@ -47,6 +47,10 @@ namespace FlatRedBall.Spine
                 lastViewportWidth = viewportWidth;
                 lastViewportHeight = viewportHeight;
 
+                if(SkeletonRenderer.Effect == null)
+                {
+                    throw new InvalidOperationException("The SkeletonRenderer Effect is null. You must first load the Spine effect and assign it to SkeletonRenderer.Effect before any Spine objects are drawn.");
+                }
                 var effect = SkeletonRenderer.Effect;
                 effect.Parameters["World"].SetValue(world);
                 effect.Parameters["View"].SetValue(Matrix.CreateLookAt(new Vector3(0.0f, 0.0f, 1.0f), Vector3.Zero, Vector3.Up));

@@ -53,8 +53,23 @@ namespace SpinePlugin.Managers
             ati.IsPositionedObject = true;
             ati.ShouldAttach = true;
             ati.CanBeCloned = true;
-            // fill in the AssetTypeInfo properties here:
-            // ...
+
+            ati.VariableDefinitions.Add(new VariableDefinition
+            {
+                Name = "ScaleX",
+                Type = "float",
+                DefaultValue = "1",
+                CanBeSetInFile = false,
+            });
+
+            ati.VariableDefinitions.Add(new VariableDefinition
+            {
+                Name = "ScaleY",
+                Type = "float",
+                DefaultValue = "1",
+                CanBeSetInFile = false,
+            });
+
 
             return ati;
         }
