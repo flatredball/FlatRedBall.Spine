@@ -23,39 +23,51 @@ namespace FlatRedBall.Spine
 
         }
 
-        public static void PrepareDraw()
+        static Matrix lastWorldMatrix = Matrix.Identity;
+        static float lastViewportWidth = 0;
+        static float lastViewportHeight = 0;
+
+        public static void PrepareDraw(Camera camera)
         {
-            var zoom = Camera.Main.DestinationRectangle.Height / Camera.Main.OrthogonalHeight;
-
-            var effect = SkeletonRenderer.Effect;
-
-
+            var zoom = camera.DestinationRectangle.Height / camera.OrthogonalHeight;
 
             var world =
-                Matrix.CreateTranslation(-Camera.Main.X, Camera.Main.Y, 0) *
+                Matrix.CreateTranslation(-camera.X, camera.Y, 0) *
                 Matrix.CreateScale(zoom, zoom, 1) 
                 ;
-            effect.Parameters["World"].SetValue(world);
-            effect.Parameters["View"].SetValue(Matrix.CreateLookAt(new Vector3(0.0f, 0.0f, 1.0f), Vector3.Zero, Vector3.Up));
-
             var graphicsDevice = FlatRedBallServices.GraphicsDevice;
 
-            var projectionMatrix = Matrix.CreateOrthographicOffCenter(
-                0,
-                graphicsDevice.Viewport.Width,
-                graphicsDevice.Viewport.Height,
-                0, 1, 0);
+            var viewportWidth = graphicsDevice.Viewport.Width;
+            var viewportHeight = graphicsDevice.Viewport.Height;
 
-
-
-            if (effect is BasicEffect)
+            // If it's the same, no sense in doing this again...
+            if (world != lastWorldMatrix || viewportWidth != lastViewportHeight || viewportHeight != lastViewportHeight)
             {
-                ((BasicEffect)SkeletonRenderer.Effect).Projection = projectionMatrix;
+                lastWorldMatrix = world;
+                lastViewportWidth = viewportWidth;
+                lastViewportHeight = viewportHeight;
+
+                var effect = SkeletonRenderer.Effect;
+                effect.Parameters["World"].SetValue(world);
+                effect.Parameters["View"].SetValue(Matrix.CreateLookAt(new Vector3(0.0f, 0.0f, 1.0f), Vector3.Zero, Vector3.Up));
+
+
+                var projectionMatrix = Matrix.CreateOrthographicOffCenter(
+                    0,
+                    graphicsDevice.Viewport.Width,
+                    graphicsDevice.Viewport.Height,
+                    0, 1, 0);
+
+                if (effect is BasicEffect)
+                {
+                    ((BasicEffect)SkeletonRenderer.Effect).Projection = projectionMatrix;
+                }
+                else
+                {
+                    SkeletonRenderer.Effect.Parameters["Projection"].SetValue(projectionMatrix);
+                }
             }
-            else
-            {
-                SkeletonRenderer.Effect.Parameters["Projection"].SetValue(projectionMatrix);
-            }
+
         }
     }
 }

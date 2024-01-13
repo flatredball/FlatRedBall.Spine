@@ -51,6 +51,13 @@
     },
     {
       "Name": "Screens/GameScreen/SpineEffect.fx",
+      "Properties": [
+        {
+          "Name": "UseContentPipeline",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
       "IsSharedStatic": true,
       "DestroyOnUnload": false,
       "HasPublicProperty": true,

@@ -327,36 +327,7 @@
       "InstantiatedByBase": true,
       "ContainedObjects": [
         {
-          "InstanceName": "CoinSpine1",
-          "SourceClassType": "Entities\\CoinSpine",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 152.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -64.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\CoinSpine",
-          "AttachToContainer": true,
-          "GenerateTimedEmit": true
-        },
-        {
-          "InstanceName": "CoinSpine2",
+          "InstanceName": "CoinSpine4",
           "SourceClassType": "Entities\\CoinSpine",
           "Properties": [
             {
@@ -375,7 +346,35 @@
             {
               "Type": "float",
               "Member": "Y",
-              "Value": -64.0,
+              "Value": -152.0,
+              "Time": 0.0
+            }
+          ],
+          "SourceType": 1,
+          "SourceFile": "Entities\\CoinSpine",
+          "GenerateTimedEmit": true
+        },
+        {
+          "InstanceName": "CoinSpine5",
+          "SourceClassType": "Entities\\CoinSpine",
+          "Properties": [
+            {
+              "Name": "AssociateWithFactory",
+              "Value": true,
+              "Type": "bool"
+            }
+          ],
+          "InstructionSaves": [
+            {
+              "Type": "float",
+              "Member": "X",
+              "Value": 432.0,
+              "Time": 0.0
+            },
+            {
+              "Type": "float",
+              "Member": "Y",
+              "Value": -160.0,
               "Time": 0.0
             }
           ],

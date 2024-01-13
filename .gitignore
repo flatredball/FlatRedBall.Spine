@@ -9,3 +9,5 @@ Source/bin/*
 SpinePlugin/SpinePlugin/bin/*
 SpinePlugin/SpinePlugin/obj/*
 SpinePlugin/.vs/*
+Samples/BuildingTheLibrary/MyProject/Content/GumProject/EventExport/gum_events.json
+Samples/BuildingTheLibrary/MyProject/Content/GumLastChangeFilePath.txt

@@ -116,17 +116,15 @@ namespace FlatRedBall.Spine
 
         public void Draw(Camera camera)
         {
-            var scale = camera.DestinationRectangle.Height / camera.OrthogonalHeight;
-
+            skeleton.X = (X) + camera.OrthogonalWidth/(2.0f);
+            skeleton.Y = (-Y ) + camera.OrthogonalHeight/(2.0f);
             state.Update(TimeManager.SecondDifference);
             state.Apply(skeleton);
             skeleton.UpdateWorldTransform();
-            skeleton.X = (X) + camera.OrthogonalWidth/(2.0f);
-            skeleton.Y = (-Y ) + camera.OrthogonalHeight/(2.0f);
 
             //SpineEffect.Parameters["World"].SetValue(Matrix.Identity);
 
-            SpineManager.PrepareDraw();
+            SpineManager.PrepareDraw(camera);
             var skeletonRenderer = SpineManager.SkeletonRenderer;
 
             skeletonRenderer.Begin();
