@@ -74,8 +74,6 @@ namespace FlatRedBall.Spine
             }
             SpineDrawableBatch toReturn = new SpineDrawableBatch();
 
-            float scale = 1 / 8f;
-
             SkeletonData skeletonData;
 
             var skeletonExtension = FileManager.GetExtension(skeletonPath);
@@ -83,13 +81,13 @@ namespace FlatRedBall.Spine
             if (skeletonExtension == "skel")
             {
                 SkeletonBinary binary = new SkeletonBinary(atlas);
-                binary.Scale = scale;
+                binary.Scale = 1;
                 skeletonData = binary.ReadSkeletonData(skeletonPath);
             }
             else
             {
                 SkeletonJson json = new SkeletonJson(atlas);
-                json.Scale = scale;
+                json.Scale = 1;
                 skeletonData = json.ReadSkeletonData(skeletonPath);
             }
 
