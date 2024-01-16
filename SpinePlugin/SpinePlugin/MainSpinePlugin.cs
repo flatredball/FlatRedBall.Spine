@@ -5,9 +5,10 @@ using FlatRedBall.Glue.Plugins;
 using FlatRedBall.Glue.Plugins.ExportedImplementations;
 using FlatRedBall.Glue.SaveClasses;
 using FlatRedBall.Graphics.Texture;
+using Spine.Plugin;
+using Spine.Plugin.Views;
 using SpinePlugin.Managers;
 using SpinePlugin.ViewModels;
-using SpinePlugin.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace SpinePlugin
     {
         public override string FriendlyName => "Spine Plugin";
 
-        MainSpineControl MainSpineControl;
+        MainSpineView MainSpineControl;
 
         PluginTab MainTab;
 
@@ -31,13 +32,13 @@ namespace SpinePlugin
             AssignEvents();
 
             CreateAssetTypeInfos();
-
-            CreateUi();
         }
 
+        bool hasCreatedUi = false;
         private void CreateUi()
         {
-            MainSpineControl = new MainSpineControl();
+            hasCreatedUi = true;
+            MainSpineControl = new MainSpineView();
             MainTab = CreateTab(MainSpineControl, "Spine");
         }
 
@@ -50,9 +51,14 @@ namespace SpinePlugin
 
         private void HandleItemSelected(List<ITreeNode> list)
         {
+            if(!hasCreatedUi)
+            {
+                CreateUi();
+            }
             var rfs = GlueState.Self.CurrentReferencedFileSave;
+            var ati = rfs?.GetAssetTypeInfo();
 
-            if(rfs == null)
+            if(ati != AssetTypeInfoManager.SpineDrawableBatchAssetTypeInfo)
             {
                 MainTab.Hide();
             }
@@ -75,20 +81,20 @@ namespace SpinePlugin
 
                 // add all the names of items that have the atlas type
                 var element = GlueState.Self.CurrentElement;
-                if(element != null)
+                if (element != null)
                 {
-                    foreach(var possibleAtlas in element.ReferencedFiles)
+                    foreach (var possibleAtlas in element.ReferencedFiles)
                     {
-                        if(possibleAtlas.GetAssetTypeInfo() == AssetTypeInfoManager.AtlasAssetTypeInfo)
+                        if (possibleAtlas.GetAssetTypeInfo() == AssetTypeInfoManager.AtlasAssetTypeInfo)
                         {
                             customOptions.Add(possibleAtlas.GetInstanceName());
                         }
                     }
                 }
 
-                foreach(var possibleAtlas in GlueState.Self.CurrentGlueProject.GlobalFiles)
+                foreach (var possibleAtlas in GlueState.Self.CurrentGlueProject.GlobalFiles)
                 {
-                    if(possibleAtlas.GetAssetTypeInfo() == AssetTypeInfoManager.AtlasAssetTypeInfo)
+                    if (possibleAtlas.GetAssetTypeInfo() == AssetTypeInfoManager.AtlasAssetTypeInfo)
                     {
                         customOptions.Add("GlobalContent." + possibleAtlas.GetInstanceName());
                     }

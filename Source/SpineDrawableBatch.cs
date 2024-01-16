@@ -68,6 +68,10 @@ namespace FlatRedBall.Spine
 
         public static SpineDrawableBatch FromFile(string skeletonPath, Atlas atlas)
         { 
+            if(atlas == null)
+            {
+                throw new ArgumentNullException(nameof(atlas));
+            }
             SpineDrawableBatch toReturn = new SpineDrawableBatch();
 
             float scale = 1 / 8f;

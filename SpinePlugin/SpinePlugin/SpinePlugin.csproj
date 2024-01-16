@@ -4,12 +4,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<UseWPF>true</UseWPF>
+	<RootNamespace>Spine.Plugin</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\FlatRedBall\FRBDK\Glue\Glue\GlueFormsCore.csproj" />
     <ProjectReference Include="..\..\..\FlatRedBall\FRBDK\Glue\PluginLibraries\PluginLibraries.csproj" />
-    <ProjectReference Include="..\..\..\Gum\WpfDataUiCore\WpfDataUiCore.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
