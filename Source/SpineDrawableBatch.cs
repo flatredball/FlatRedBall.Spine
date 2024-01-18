@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FlatRedBall.Spine
 {
-    public class SpineDrawableBatch : PositionedObject, IDrawableBatch
+    public class SpineDrawableBatch : PositionedObject, IDrawableBatch, IVisible
     {
         Skeleton skeleton;
         AnimationState state;
@@ -45,6 +45,46 @@ namespace FlatRedBall.Spine
 
         public bool UpdateEveryFrame => true;
 
+        public bool Visible { get; set; } = true;
+
+        IVisible IVisible.Parent
+        {
+            get
+            {
+                return this.Parent as IVisible;
+            }
+        }
+
+        public bool AbsoluteVisible
+        {
+            get
+            {
+                if (this.Visible)
+                {
+                    var parentAsIVisible = this.Parent as IVisible;
+
+                    if (parentAsIVisible == null || IgnoresParentVisibility)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        // this is true, so return if the parent is visible:
+                        return parentAsIVisible.AbsoluteVisible;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool IgnoresParentVisibility
+        {
+            get;
+            set;
+        }
         SkeletonBounds bounds = new SkeletonBounds();
 
         /// <summary>
@@ -143,6 +183,8 @@ namespace FlatRedBall.Spine
 
         public void Draw(Camera camera)
         {
+            if (!AbsoluteVisible) return;
+
             skeleton.ScaleX = ScaleX;
             skeleton.ScaleY = ScaleY;
 
@@ -223,8 +265,6 @@ namespace FlatRedBall.Spine
                     frbPolygon = new FlatRedBall.Math.Geometry.Polygon();
                     frbPolygon.Name = spineBoundingBox.Name;
                     shapeCollection.Polygons.Add(frbPolygon);
-                    ShapeManager.AddPolygon(frbPolygon);
-                    frbPolygon.Visible = true;
                     frbPolygon.AttachTo(parent);
                 }
 
@@ -237,9 +277,6 @@ namespace FlatRedBall.Spine
 
                     for(int i = 0; i < frbPolygon.Points.Count-1; i++)
                     {
-                        var x = spineBoundingBox.Vertices[i * 2];
-                        var y = spineBoundingBox.Vertices[i * 2 + 1];
-
                         var worldX = spinePolygon.Vertices[i * 2];
                         var worldY = spinePolygon.Vertices[i * 2 + 1];
 
@@ -248,6 +285,11 @@ namespace FlatRedBall.Spine
 
                     }
                     frbPolygon.SetPoint(frbPolygon.Points.Count - 1, frbPolygon.Points[0]);
+                    if(!frbPolygon.IsClockwise())
+                    {
+                        frbPolygon.InvertPointOrder();
+                    }
+
                     frbPolygon.ForceUpdateDependencies();
                 }
             }

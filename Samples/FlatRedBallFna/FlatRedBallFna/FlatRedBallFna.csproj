@@ -1,0 +1,149 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <RollForward>Major</RollForward>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DefineConstants>DESKTOP;XNA4;FRN_XNA;FNA</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <RootNamespace>FlatRedBallFna</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Icon.ico" />
+    <None Remove="Icon.bmp" />
+    <None Remove="**\*.glsj" />
+    <None Remove="**\*.glej" />
+    <None Remove="**\*.gluj" />
+    <None Include="content\entities\spineentity\humanoid.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>humanoid</Name>
+    </None>
+    <None Include="content\entities\spineentity\nardiak.atlas">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>nardiak</Name>
+    </None>
+    <None Include="content\entities\spineentity\spritesheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>spritesheet</Name>
+    </None>
+    <None Include="content\globalcontent\spineeffect.fxb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Name>SpineEffect</Name>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataTypes\TileMapInfo.Generated.cs" />
+    <Compile Include="DialogTreePlugin\RootObject.Generated.cs" />
+    <Compile Include="Entities\SpineEntity.cs" />
+    <Compile Include="Entities\SpineEntity.Generated.cs">
+      <DependentUpon>SpineEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Factories\SpineEntityFactory.Generated.cs" />
+    <Compile Include="FileAliases.Generated.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Game1.Generated.cs">
+      <DependentUpon>Game1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalContent.Generated.cs" />
+    <Compile Include="GlueCommunication\GameConnectionManager.Generated.cs" />
+    <Compile Include="Performance\IEntityFactory.Generated.cs" />
+    <Compile Include="Performance\PoolList.Generated.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\GameScreen.Generated.cs">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\CameraSetup.Generated.cs" />
+    <Compile Include="TileCollisions\CollidableListVsTileShapeCollectionRelationship.Generated.cs" />
+    <Compile Include="TileCollisions\CollidableVsTileShapeCollectionRelationship.Generated.cs" />
+    <Compile Include="TileCollisions\CollisionManagerTileShapeCollectionExtensions.Generated.cs" />
+    <Compile Include="TileCollisions\TileShapeCollection.Generated.cs" />
+    <Compile Include="TileEntities\TileEntityInstantiator.Generated.cs" />
+    <Compile Include="TileGraphics\AbstractMapLayer.Generated.cs" />
+    <Compile Include="TileGraphics\AnimationChainContainer.Generated.cs" />
+    <Compile Include="TileGraphics\ExternalTileset.Generated.cs" />
+    <Compile Include="TileGraphics\LayeredTileMap.Generated.cs" />
+    <Compile Include="TileGraphics\LayeredTileMapAnimation.Generated.cs" />
+    <Compile Include="TileGraphics\MapDrawableBatch.Generated.cs" />
+    <Compile Include="TileGraphics\MapLayer.Generated.cs" />
+    <Compile Include="TileGraphics\MapTileset.Generated.cs" />
+    <Compile Include="TileGraphics\MapTilesetTile.Generated.cs" />
+    <Compile Include="TileGraphics\NamedValue.Generated.cs" />
+    <Compile Include="TileGraphics\ReducedTileMapInfo.Generated.cs" />
+    <Compile Include="TileGraphics\ReducedTileMapInfo.TiledMapSave.Generated.cs" />
+    <Compile Include="TileGraphics\TileAnimation.Generated.cs" />
+    <Compile Include="TileGraphics\TileAnimationFrame.Generated.cs" />
+    <Compile Include="TileGraphics\TiledMapSave.Conversion.Generated.cs" />
+    <Compile Include="TileGraphics\TiledMapSave.Serialization.Generated.cs" />
+    <Compile Include="TileGraphics\TiledMapToShapeCollectionConverter.Generated.cs" />
+    <Compile Include="TileGraphics\TileNodeNetworkCreator.Generated.cs" />
+    <Compile Include="TileGraphics\Tileset.Generated.cs" />
+    <Compile Include="TileGraphics\TilesetExtensionMethods.Generated.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico" />
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp" Version="2.88.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\Shader.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\shader.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\ShaderForcePoint.fx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\ShaderForcePoint.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FAudio.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FNA3D.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="libtheorafile.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SDL2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../../FlatRedBall/Engines/FlatRedBallXNA/3rd Party Libraries/FNA/FNA.Core.csproj">
+      <Name>FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../FlatRedBall/Engines/FlatRedBallXNA/FlatRedBall.FNA/FlatRedBall.FNA.csproj">
+      <Name>FlatRedBall.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../FlatRedBall/Engines/Forms/FlatRedBall.Forms/FlatRedBall.Forms.FNA/FlatRedBall.Forms.FNA.csproj">
+      <Name>FlatRedBall.Forms.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../FlatRedBall/Engines/Forms/FlatRedBall.Forms/StateInterpolation/StateInterpolation.FNA/StateInterpolation.FNA.csproj">
+      <Name>StateInterpolation.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../Gum/GumCore/GumCoreXnaPc/GumCore.FNA/GumCore.FNA.csproj">
+      <Name>GumCore.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../Gum/SvgPlugin/SkiaInGumShared/SkiaInGum.FNA.csproj">
+      <Name>SkiaInGum.FNA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Source\FlatRedBall.Spine.FNA.csproj" />
+  </ItemGroup>
+  <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+    <Message Text="Restoring dotnet tools" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
+</Project>

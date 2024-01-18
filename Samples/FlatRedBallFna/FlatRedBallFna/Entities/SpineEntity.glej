@@ -1,0 +1,114 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "CreatedByOtherEntities": true,
+  "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Entities/SpineEntity/spritesheet.png",
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Entities/SpineEntity/nardiak.atlas",
+      "IsSharedStatic": true,
+      "RuntimeType": "Spine.Atlas",
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Entities/SpineEntity/humanoid.json",
+      "Properties": [
+        {
+          "Name": "AtlasName",
+          "Value": "nardiak",
+          "Type": "String"
+        }
+      ],
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Spine.SpineDrawableBatch",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "X",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Y",
+      "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "Z",
+      "SetByDerived": true
+    }
+  ],
+  "Properties": [
+    {
+      "Name": "ImplementsICollidable",
+      "Value": true,
+      "Type": "bool"
+    },
+    {
+      "Name": "InputDevice",
+      "Value": 0,
+      "Type": "int"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "SpineDrawableBatch",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "ScaleX",
+          "Value": 10.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "ScaleY",
+          "Value": 10.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceFile": "Entities/SpineEntity/humanoid.json",
+      "SourceName": "Entire File (SpineDrawableBatch)",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    }
+  ],
+  "Name": "Entities\\SpineEntity",
+  "CustomClassesForExport": []
+}
