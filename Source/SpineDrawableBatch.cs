@@ -181,13 +181,28 @@ namespace FlatRedBall.Spine
             return toReturn;
         }
 
+
+        public void Update()
+        {
+            // January 21, 2024
+            // Through testing this
+            // is the set of values that
+            // are needed for animations. Not
+            // sure if we can get rid of some of
+            // these calls from the Draw, but this
+            // at least makes collision align with everything.
+            skeleton.ScaleX = ScaleX;
+            skeleton.ScaleY = ScaleY;
+            state.Update(TimeManager.SecondDifference * AnimationSpeed);
+            state.Apply(skeleton);
+            skeleton.UpdateWorldTransform();
+        }
+
         public void Draw(Camera camera)
         {
             if (!AbsoluteVisible) return;
-
             skeleton.ScaleX = ScaleX;
             skeleton.ScaleY = ScaleY;
-
             skeleton.X = (X) + camera.OrthogonalWidth/(2.0f);
             skeleton.Y = (-Y ) + camera.OrthogonalHeight/(2.0f);
             state.Apply(skeleton);
@@ -217,11 +232,6 @@ namespace FlatRedBall.Spine
             //    }
             //}
             //}
-        }
-
-        public void Update()
-        {
-            state.Update(TimeManager.SecondDifference * AnimationSpeed);
         }
 
         public void AddToManagers(Layer layer)
@@ -311,7 +321,7 @@ namespace FlatRedBall.Spine
             instructions.Add(new DelegateInstruction(() => this.AnimationSpeed = oldSpeed));
             AnimationSpeed = 0;
         }
-
+        
         private Animation GetAnimationInternal(string animationName)
         {
             var foundAnimation = AnimationState.Data.SkeletonData.Animations.Find(item => item.Name == animationName);

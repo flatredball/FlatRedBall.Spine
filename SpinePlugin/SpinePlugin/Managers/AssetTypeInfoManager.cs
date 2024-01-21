@@ -39,7 +39,7 @@ namespace SpinePlugin.Managers
         {
             var file = ReferencedFileSaveCodeGenerator.GetFileToLoadForRfs(rfs);
             return $"{rfs.GetInstanceName()} = " +
-                $"new global::Spine.Atlas(\"{file}\", new global::Spine.XnaTextureLoader(FlatRedBall.FlatRedBallServices.GraphicsDevice));";
+                $"new global::Spine.Atlas(\"{file}\", new global::FlatRedBall.Spine.FrbSpineTextureLoader({contentManager}));";
 
         }
 
