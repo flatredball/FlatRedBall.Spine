@@ -56,6 +56,7 @@ namespace SpinePlugin.Managers
             ati.AddToManagersFunc = AddToManagersSpineDrawableBatchFunc;
             ati.DestroyFunc = DestroySpineDrawableBatchFunc;
             ati.IsPositionedObject = true;
+            ati.CanBeObject = true;
             ati.ShouldAttach = true;
             ati.CanBeCloned = true;
 
