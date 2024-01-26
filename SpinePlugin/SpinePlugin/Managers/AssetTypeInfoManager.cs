@@ -95,10 +95,15 @@ namespace SpinePlugin.Managers
             {
                 return $"{rfs.GetInstanceName()}.AddToManagers(null);";
             }
-            else
+            else if(nos != null)
             {
-                return $"{nos.FieldName}.AddToManagers(null);";
+                if(nos.DefinedByBase == false)
+                {
+                    return $"{nos.FieldName}.AddToManagers(null);";
+                }
             }
+
+            return null;
 
         }
 
