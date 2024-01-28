@@ -251,9 +251,9 @@ namespace FlatRedBall.Spine
         public SpineDrawableBatch Clone()
         {
             var clone = new SpineDrawableBatch();
-            clone.skeleton = skeleton;
-            AnimationStateData stateData = new AnimationStateData(clone.skeleton.Data);
-            clone.AnimationState = new AnimationState(stateData);
+            clone.skeleton = new Skeleton(skeleton);
+            clone.AnimationState = new AnimationState(this.AnimationState.Data);
+            clone.bounds = new SkeletonBounds();
             return clone;
         }
 
