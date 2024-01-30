@@ -23,7 +23,7 @@ namespace SpinePlugin
     {
         public override string FriendlyName => "Spine Plugin";
 
-        public override Version Version => new Version(0,1,0,0);
+        public override Version Version => new Version(0,2,0,0);
 
         MainSpineView MainSpineControl;
 

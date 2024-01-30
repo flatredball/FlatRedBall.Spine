@@ -97,7 +97,7 @@ namespace SpinePlugin.Managers
             }
             else if(nos != null)
             {
-                if(nos.DefinedByBase == false)
+                if(nos.DefinedByBase == false || nos.InstantiatedByBase == false)
                 {
                     return $"{nos.FieldName}.AddToManagers(null);";
                 }
