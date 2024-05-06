@@ -82,7 +82,8 @@ namespace SpinePlugin.Managers
 
         private static string CustomLoadSpineDrawableBatchFunc(IElement element, NamedObjectSave save1, ReferencedFileSave rfs, string arg4)
         {
-            var atlasProperty = rfs.GetProperty<string>("AtlasName") ?? "no atlas";
+            var atlasProperty = rfs.GetProperty<string>("AtlasName") ?? 
+                $"Atlas has not been set on {rfs}. Set this in the FRB Editor to get rid of this compile error";
 
             var file = ReferencedFileSaveCodeGenerator.GetFileToLoadForRfs(rfs);
 
