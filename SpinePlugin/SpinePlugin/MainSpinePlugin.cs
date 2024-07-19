@@ -6,6 +6,7 @@ using FlatRedBall.Glue.Plugins.ExportedImplementations;
 using FlatRedBall.Glue.SaveClasses;
 using FlatRedBall.Graphics.Texture;
 using Spine.Plugin;
+using Spine.Plugin.Managers;
 using Spine.Plugin.Views;
 using SpinePlugin.Managers;
 using SpinePlugin.ViewModels;
@@ -21,22 +22,28 @@ namespace SpinePlugin
     [System.ComponentModel.Composition.Export(typeof(FlatRedBall.Glue.Plugins.PluginBase))]
     public class MainSpinePlugin : PluginBase
     {
+        #region Fields/Properties
+
         public override string FriendlyName => "Spine Plugin";
 
-        public override Version Version => new Version(0,3,0,0);
+        public override Version Version => new Version(0,4,0,0);
 
         MainSpineView MainSpineControl;
 
         PluginTab MainTab;
+
+        bool hasCreatedUi = false;
+        #endregion
 
         public override void StartUp()
         {
             AssignEvents();
 
             CreateAssetTypeInfos();
+
+            AddErrorReporter(new SpineErrorReporter());
         }
 
-        bool hasCreatedUi = false;
         private void CreateUi()
         {
             hasCreatedUi = true;
