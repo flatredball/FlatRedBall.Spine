@@ -14,6 +14,8 @@ namespace FlatRedBall.Spine
 {
     public class SpineDrawableBatch : PositionedObject, IDrawableBatch, IVisible
     {
+        #region Fields/Properties
+
         Skeleton skeleton;
         AnimationState state;
         public AnimationState AnimationState
@@ -86,6 +88,8 @@ namespace FlatRedBall.Spine
             set;
         }
         SkeletonBounds bounds = new SkeletonBounds();
+
+        #endregion
 
         /// <summary>
         /// Don't call this, instead call SpriteManager.RemoveDrawableBatch
@@ -195,7 +199,7 @@ namespace FlatRedBall.Spine
             skeleton.ScaleY = ScaleY;
             state.Update(TimeManager.SecondDifference * AnimationSpeed);
             state.Apply(skeleton);
-            skeleton.UpdateWorldTransform();
+            skeleton.UpdateWorldTransform(Skeleton.Physics.None);
         }
 
         public void Draw(Camera camera)
@@ -206,7 +210,7 @@ namespace FlatRedBall.Spine
             skeleton.X = (X) + camera.OrthogonalWidth/(2.0f);
             skeleton.Y = (-Y ) + camera.OrthogonalHeight/(2.0f);
             state.Apply(skeleton);
-            skeleton.UpdateWorldTransform();
+            skeleton.UpdateWorldTransform(Skeleton.Physics.None);
 
             //SpineEffect.Parameters["World"].SetValue(Matrix.Identity);
 
@@ -311,6 +315,15 @@ namespace FlatRedBall.Spine
         public void PlayAnimation(string animationName, bool loop=true)
         {
             Animation foundAnimation = GetAnimationInternal(animationName);
+
+            // see if it's already playing:
+            foreach(var track in AnimationState.Tracks)
+            {
+                if(track.Animation != null && track.Animation.Name == foundAnimation.Name)
+                {
+                    return;
+                }
+            }
 
             AnimationState.SetAnimation(0, foundAnimation, loop: true);
         }

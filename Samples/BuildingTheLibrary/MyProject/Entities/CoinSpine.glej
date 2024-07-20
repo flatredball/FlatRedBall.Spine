@@ -78,7 +78,20 @@
           "Type": "bool"
         }
       ],
-      "InstructionSaves": [],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "ScaleX",
+          "Value": 0.2,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "ScaleY",
+          "Value": 0.2,
+          "Time": 0.0
+        }
+      ],
       "SourceFile": "Spine/data/coinpro.json",
       "SourceName": "Entire File (SpineDrawableBatch)",
       "AttachToContainer": true,

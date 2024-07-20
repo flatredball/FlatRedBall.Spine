@@ -1,0 +1,77 @@
+{
+  "Tags": [
+    "GLUE"
+  ],
+  "Source": "GLUE",
+  "ReferencedFiles": [
+    {
+      "Name": "GumProject/Screens/SpineEntityAnimationScreenGum.gusx",
+      "IsSharedStatic": true,
+      "RuntimeType": "MyProject.GumRuntimes.SpineEntityAnimationScreenGumRuntime",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
+  "CustomVariables": [
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "string",
+          "Type": "String"
+        },
+        {
+          "Name": "Category",
+          "Value": "Layer",
+          "Type": "String"
+        }
+      ],
+      "Name": "DefaultLayer",
+      "Category": "Layer"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "SpineEntityInstance",
+      "SourceClassType": "Entities\\SpineEntity",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "ScaleX",
+          "Value": 0.3,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "ScaleY",
+          "Value": 0.3,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "X",
+          "Value": 40.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "Y",
+          "Value": -160.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceType": 1,
+      "SourceFile": "Entities\\SpineEntity",
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
+    }
+  ],
+  "Name": "Screens\\SpineEntityAnimationScreen",
+  "CustomClassesForExport": []
+}

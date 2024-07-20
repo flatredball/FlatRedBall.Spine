@@ -61,39 +61,7 @@
       "SourceClassGenericType": "Entities\\Player",
       "ExposedInDerived": true,
       "AttachToContainer": true,
-      "GenerateTimedEmit": true,
-      "ContainedObjects": [
-        {
-          "InstanceName": "Player1",
-          "SourceClassType": "Entities\\Player",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 64.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -64.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Player",
-          "ExposedInDerived": true,
-          "AttachToContainer": true,
-          "GenerateTimedEmit": true
-        }
-      ]
+      "GenerateTimedEmit": true
     },
     {
       "InstanceName": "EnemyList",
@@ -527,7 +495,7 @@
         {
           "Type": "string",
           "Member": "Targets",
-          "Value": "PlayerList",
+          "Value": "SpineEntityList",
           "Time": 0.0
         }
       ],

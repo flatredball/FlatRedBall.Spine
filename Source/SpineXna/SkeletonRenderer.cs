@@ -41,6 +41,11 @@ namespace Spine {
 		private const int BR = 3;
 
 		SkeletonClipping clipper = new SkeletonClipping();
+		/// <summary>Returns the <see cref="SkeletonClipping"/> used by this renderer for use with e.g.
+		/// <see cref="Skeleton.GetBounds(out float, out float, out float, out float, ref float[], SkeletonClipping)"/>
+		/// </summary>
+		public SkeletonClipping SkeletonClipping { get { return clipper; } }
+
 		GraphicsDevice device;
 		MeshBatcher batcher;
 		public MeshBatcher Batcher { get { return batcher; } }
@@ -48,6 +53,7 @@ namespace Spine {
 		float[] vertices = new float[8];
 		int[] quadTriangles = { 0, 1, 2, 2, 3, 0 };
 		BlendState defaultBlendState;
+		BlendState blendStateMultiply = null;
 
 		Effect effect;
 		public Effect Effect { get { return effect; } set { effect = value; } }
@@ -86,6 +92,12 @@ namespace Spine {
 
 		public void Begin () {
 			defaultBlendState = premultipliedAlpha ? BlendState.AlphaBlend : BlendState.NonPremultiplied;
+			if (blendStateMultiply == null) {
+				blendStateMultiply = new BlendState();
+				blendStateMultiply.ColorBlendFunction = BlendFunction.Max;
+				blendStateMultiply.ColorSourceBlend = Blend.DestinationColor;
+				blendStateMultiply.ColorDestinationBlend = Blend.Zero;
+			}
 
 			device.RasterizerState = rasterizerState;
 			device.BlendState = defaultBlendState;
@@ -151,10 +163,21 @@ namespace Spine {
 				}
 
 				// set blend state
-				BlendState blend = slot.Data.BlendMode == BlendMode.Additive ? BlendState.Additive : defaultBlendState;
+				BlendState blend;
+				switch (slot.Data.BlendMode) {
+				case BlendMode.Additive:
+					blend = BlendState.Additive;
+					break;
+				case BlendMode.Multiply:
+					blend = blendStateMultiply;
+					break;
+				default:
+					blend = defaultBlendState;
+					break;
+				}
 				if (device.BlendState != blend) {
-					//End();
-					//device.BlendState = blend;
+					End();
+					device.BlendState = blend;
 				}
 
 				// calculate color
@@ -183,7 +206,7 @@ namespace Spine {
 
 				// clip
 				if (clipper.IsClipping) {
-					clipper.ClipTriangles(vertices, verticesCount << 1, indices, indicesCount, uvs);
+					clipper.ClipTriangles(vertices, indices, indicesCount, uvs);
 					vertices = clipper.ClippedVertices.Items;
 					verticesCount = clipper.ClippedVertices.Count >> 1;
 					indices = clipper.ClippedTriangles.Items;

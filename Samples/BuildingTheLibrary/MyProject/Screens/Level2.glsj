@@ -191,41 +191,7 @@
       "AttachToContainer": true,
       "GenerateTimedEmit": true,
       "DefinedByBase": true,
-      "InstantiatedByBase": true,
-      "ContainedObjects": [
-        {
-          "InstanceName": "Player1",
-          "SourceClassType": "Entities\\Player",
-          "Properties": [
-            {
-              "Name": "AssociateWithFactory",
-              "Value": true,
-              "Type": "bool"
-            }
-          ],
-          "InstructionSaves": [
-            {
-              "Type": "float",
-              "Member": "X",
-              "Value": 64.0,
-              "Time": 0.0
-            },
-            {
-              "Type": "float",
-              "Member": "Y",
-              "Value": -64.0,
-              "Time": 0.0
-            }
-          ],
-          "SourceType": 1,
-          "SourceFile": "Entities\\Player",
-          "ExposedInDerived": true,
-          "AttachToContainer": true,
-          "GenerateTimedEmit": true,
-          "DefinedByBase": true,
-          "InstantiatedByBase": true
-        }
-      ]
+      "InstantiatedByBase": true
     }
   ],
   "Name": "Screens\\Level2",

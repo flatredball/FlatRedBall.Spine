@@ -29,6 +29,11 @@ namespace FlatRedBall.Spine
 
         public static void PrepareDraw(Camera camera)
         {
+            if(SkeletonRenderer == null)
+            {
+                throw new InvalidOperationException("SkeletonRenderer is null - did you remember to call SpineManager.Initialize?");
+            }
+
             var zoom = camera.DestinationRectangle.Height / camera.OrthogonalHeight;
 
             var world =

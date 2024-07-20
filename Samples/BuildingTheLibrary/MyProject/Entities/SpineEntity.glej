@@ -5,6 +5,33 @@
   "Source": "GLUE",
   "CreatedByOtherEntities": true,
   "Is2D": true,
+  "ReferencedFiles": [
+    {
+      "Name": "Spine/data/spineboyTexture.png",
+      "IsSharedStatic": true,
+      "RuntimeType": "Microsoft.Xna.Framework.Graphics.Texture2D",
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Spine/data/spineboy.atlas",
+      "IsSharedStatic": true,
+      "RuntimeType": "Spine.Atlas",
+      "ProjectsToExcludeFrom": []
+    },
+    {
+      "Name": "Spine/data/spineboySkeleton.json",
+      "Properties": [
+        {
+          "Name": "AtlasName",
+          "Value": "spineboy",
+          "Type": "String"
+        }
+      ],
+      "IsSharedStatic": true,
+      "RuntimeType": "FlatRedBall.Spine.SpineDrawableBatch",
+      "ProjectsToExcludeFrom": []
+    }
+  ],
   "CustomVariables": [
     {
       "Properties": [
@@ -38,6 +65,34 @@
       ],
       "Name": "Z",
       "SetByDerived": true
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "ScaleX",
+      "DefaultValue": 1.0,
+      "SetByDerived": true,
+      "SourceObject": "SpineDrawableBatch",
+      "SourceObjectProperty": "ScaleX"
+    },
+    {
+      "Properties": [
+        {
+          "Name": "Type",
+          "Value": "float",
+          "Type": "String"
+        }
+      ],
+      "Name": "ScaleY",
+      "DefaultValue": 1.0,
+      "SetByDerived": true,
+      "SourceObject": "SpineDrawableBatch",
+      "SourceObjectProperty": "ScaleY"
     }
   ],
   "Properties": [
@@ -45,6 +100,37 @@
       "Name": "InputDevice",
       "Value": 0,
       "Type": "int"
+    }
+  ],
+  "NamedObjects": [
+    {
+      "InstanceName": "SpineDrawableBatch",
+      "Properties": [
+        {
+          "Name": "AssociateWithFactory",
+          "Value": true,
+          "Type": "bool"
+        }
+      ],
+      "InstructionSaves": [
+        {
+          "Type": "float",
+          "Member": "ScaleX",
+          "Value": 1.0,
+          "Time": 0.0
+        },
+        {
+          "Type": "float",
+          "Member": "ScaleY",
+          "Value": 1.0,
+          "Time": 0.0
+        }
+      ],
+      "SourceFile": "Spine/data/spineboySkeleton.json",
+      "SourceName": "Entire File (SpineDrawableBatch)",
+      "HasPublicProperty": true,
+      "AttachToContainer": true,
+      "GenerateTimedEmit": true
     }
   ],
   "Name": "Entities\\SpineEntity",

@@ -37,8 +37,6 @@ namespace MyProject.Screens
 
         void CustomActivity(bool firstTimeCalled)
         {
-            splineEntity.X = Player1.X;
-            splineEntity.Y = Player1.Y;
 
         }
 

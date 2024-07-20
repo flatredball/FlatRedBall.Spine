@@ -30,55 +30,6 @@ namespace MyProject.Screens
             var text = GumScreen.TextInstance;
             var textRenderable = text.Component as Text;
 
-
-            var bbcode = "Hi [Font=Bauhaus 93]this is[/Font] some [Color=Purple]purple[/Color] text";
-            var tags = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase) { "red", "blue", "green", "color", "font" };
-
-            var results = BbCodeParser.Parse(tags, bbcode);
-            var strippedText = BbCodeParser.RemoveTags(bbcode, results);
-            GumScreen.TextInstance.Text = strippedText;
-
-            foreach(var item in results)
-            {
-                object castedValue = item.Open.Argument;
-                string convertedName = item.Name;
-                switch(item.Name)
-                {
-                    case "Red":
-                    case "Green":
-                    case "Blue":
-                        castedValue = byte.Parse(item.Open.Argument);
-                        break;
-                    case "Color":
-                        {
-                            int result;
-
-                            if (item.Open.Argument?.StartsWith("0x") == true && int.TryParse(item.Open.Argument.Substring(2),
-                                                                                NumberStyles.AllowHexSpecifier,
-                                                                                null,
-                                                                                out result))
-                            {
-                                castedValue = result;
-                                castedValue = System.Drawing.Color.FromArgb(result);
-                            }
-                            else
-                            {
-                                castedValue = System.Drawing.Color.FromName(item.Open.Argument);
-                            }
-                        }
-                        break;
-
-
-                }
-
-                textRenderable.InlineVariables.Add(new InlineVariable
-                {
-                    CharacterCount = item.Close.StartStrippedIndex - item.Open.StartStrippedIndex,
-                    StartIndex = item.Open.StartStrippedIndex,
-                    VariableName = convertedName,
-                    Value = castedValue
-                });
-            }
         }
 
         void CustomActivity(bool firstTimeCalled)
