@@ -373,38 +373,6 @@ namespace FlatRedBall.Spine
                 Skeleton.SetSkin(skin);
                 AnimationState.Apply(Skeleton);
             }
-
-            // create a new dynamic skin and copy the template skin settings
-            //var dynamicSkin = new Skin();
-            //var templateSkin = Skeleton.Data.FindSkin(skinName);
-            //if (templateSkin == null)
-            //{
-            //    throw new Exception($"The skin {skinName} does not exist on this skeleton.");
-            //}
-            //dynamicSkin.CopySkin(templateSkin);
-
-            //// get the existing placeholder data
-            //var existingSlot = templateSkin.Attachments.Where(a => a.Name == placeholderName).FirstOrDefault();
-            //var existingRegion = existingSlot.Attachment as RegionAttachment;
-            //if (existingRegion == null)
-            //{
-            //    throw new Exception($"Failed to copy {placeholderName} - make sure it exists on the skin and is a texture region placeholder!");
-            //}
-
-            //// assign the atlas texture to a new slot and call Update() to make sure the UVs are recalculated
-            //var dynamicRegion = new RegionAttachment(existingRegion);
-            //var regionData = atlasSource.FindRegion(atlasTextureName);
-            //if (regionData == null)
-            //{
-            //    throw new Exception($"{atlasTextureName} was not found in the provided atlas!");
-            //}
-            //dynamicRegion.Region = regionData;
-            //dynamicRegion.UpdateRegion();
-
-            //// finally, set the attachment on our new skin and apply the skin to the skeleton
-            //dynamicSkin.SetAttachment(existingSlot.SlotIndex, placeholderName, dynamicRegion);
-            //Skeleton.SetSkin(dynamicSkin);
-            //AnimationState.Apply(Skeleton);
         }
 
         // Eventually we want to support IAnimatable interface, but for now we'll mimic it until we're ready
