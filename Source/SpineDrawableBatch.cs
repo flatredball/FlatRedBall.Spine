@@ -23,7 +23,7 @@ namespace FlatRedBall.Spine
             get => state;
             private set
             {
-                if(value == null)
+                if (value == null)
                 {
                     throw new InvalidOperationException("Can't set AnimationState to null");
                 }
@@ -111,8 +111,8 @@ namespace FlatRedBall.Spine
         }
 
         public static SpineDrawableBatch FromFile(string skeletonPath, Atlas atlas)
-        { 
-            if(atlas == null)
+        {
+            if (atlas == null)
             {
                 throw new ArgumentNullException(nameof(atlas));
             }
@@ -207,8 +207,8 @@ namespace FlatRedBall.Spine
             if (!AbsoluteVisible) return;
             skeleton.ScaleX = ScaleX;
             skeleton.ScaleY = ScaleY;
-            skeleton.X = (X) + camera.OrthogonalWidth/(2.0f);
-            skeleton.Y = (-Y ) + camera.OrthogonalHeight/(2.0f);
+            skeleton.X = (X) + camera.OrthogonalWidth / (2.0f);
+            skeleton.Y = (-Y) + camera.OrthogonalHeight / (2.0f);
             state.Apply(skeleton);
             skeleton.UpdateWorldTransform(Skeleton.Physics.None);
 
@@ -267,14 +267,14 @@ namespace FlatRedBall.Spine
 
             var count = bounds.BoundingBoxes.Count;
 
-            for(int spinePolygonIndex = 0; spinePolygonIndex < count; spinePolygonIndex++)
+            for (int spinePolygonIndex = 0; spinePolygonIndex < count; spinePolygonIndex++)
             {
                 var spineBoundingBox = bounds.BoundingBoxes.Items[spinePolygonIndex];
                 var spinePolygon = bounds.Polygons.Items[spinePolygonIndex];
 
                 var frbPolygon = shapeCollection.Polygons.FindByName(spineBoundingBox.Name);
 
-                if(createMissingShapes && frbPolygon == null)
+                if (createMissingShapes && frbPolygon == null)
                 {
                     frbPolygon = new FlatRedBall.Math.Geometry.Polygon();
                     frbPolygon.Name = spineBoundingBox.Name;
@@ -282,24 +282,24 @@ namespace FlatRedBall.Spine
                     frbPolygon.AttachTo(parent);
                 }
 
-                if(frbPolygon != null)
+                if (frbPolygon != null)
                 {
-                    if(frbPolygon.Points == null || (2*frbPolygon.Points.Count - 1) != spineBoundingBox.Vertices.Length)
+                    if (frbPolygon.Points == null || (2 * frbPolygon.Points.Count - 1) != spineBoundingBox.Vertices.Length)
                     {
-                        frbPolygon.Points = new Point[1 + spineBoundingBox.Vertices.Length/2];
+                        frbPolygon.Points = new Point[1 + spineBoundingBox.Vertices.Length / 2];
                     }
 
-                    for(int i = 0; i < frbPolygon.Points.Count-1; i++)
+                    for (int i = 0; i < frbPolygon.Points.Count - 1; i++)
                     {
                         var worldX = spinePolygon.Vertices[i * 2];
                         var worldY = spinePolygon.Vertices[i * 2 + 1];
 
                         //frbPolygon.SetPoint(i, x*ScaleX, y*ScaleY);
-                        frbPolygon.SetPoint(i, worldX - skeleton.X, -1*worldY + skeleton.Y);
+                        frbPolygon.SetPoint(i, worldX - skeleton.X, -1 * worldY + skeleton.Y);
 
                     }
                     frbPolygon.SetPoint(frbPolygon.Points.Count - 1, frbPolygon.Points[0]);
-                    if(!frbPolygon.IsClockwise())
+                    if (!frbPolygon.IsClockwise())
                     {
                         frbPolygon.InvertPointOrder();
                     }
@@ -310,16 +310,113 @@ namespace FlatRedBall.Spine
 
         }
 
+
+        /// <summary>
+        /// This method either finds an existing skin with the provided name, or it creates
+        /// a new skin from the provided template
+        /// </summary>
+        /// <param name="templateName">The name of the template skin to base a new skin on</param>
+        /// <param name="dynamicSkinName">The name of the dynamic skin to create</param>
+        /// <returns>A copy of the template skin, or the dynamic skin if it was found.</returns>
+        /// <exception cref="Exception">Thrown if the template skin was not found on the skeleton.</exception>
+        public Skin GetOrCreateDynamicSkinFromTemplate(string templateName, string dynamicSkinName)
+        {
+            var dynamicSkin = Skeleton.Data.FindSkin(dynamicSkinName);
+            if(dynamicSkin == null)
+            {
+                var templateSkin = Skeleton.Data.FindSkin(templateName);
+                if (templateSkin == null)
+                {
+                    throw new Exception($"{templateName} does not exist on this skeleton!");
+                }
+                dynamicSkin = new Skin(dynamicSkinName);
+                dynamicSkin.CopySkin(templateSkin);
+            }
+            
+            return dynamicSkin;
+        }
+
+        /// <summary>
+        /// Sets the provided atlas texture on the provided skin at the provided placeholder slot if
+        /// all exist. Note that skin instances are shared across skeletons so changing the texture on
+        /// a skin will apply to all creatures using that skin.
+        /// 
+        /// It is recommended to combine this method with GetOrCreateDynamicSkinFromTemplate in order to
+        /// create unique runtime skins with customized placeholder slots.
+        /// </summary>
+        /// <param name="skin">The skin to update. Updates will apply to all instances using this skin!</param>
+        /// <param name="placeholderName">The placeholder name to update on the skin.</param>
+        /// <param name="atlasSource">The atlas containing the target texture.</param>
+        /// <param name="atlasTextureName">The texture name on the provided atlas.</param>
+        /// <param name="applyImmediately">Whether to immediately set the updated skin to this skeleton. Defaults to true.</param>
+        /// <exception cref="Exception">Thrown if placeholder or atlas texture names don't exist on the skeleton or atlas.</exception>
+        public void SetDynamicTextureOnSkin(Skin skin, string placeholderName, Atlas atlasSource, string atlasTextureName, bool applyImmediately = true)
+        {
+            var slot = skin.Attachments.Where(a => a.Name == placeholderName).FirstOrDefault();
+            var region = slot.Attachment as RegionAttachment;
+            if(region == null)
+            {
+                throw new Exception($"Could not find {placeholderName} on provided skin.");
+            }
+
+            var regionData = atlasSource.FindRegion(atlasTextureName);
+            if(regionData == null)
+            {
+                throw new Exception($"Could not find region {atlasTextureName} on provided atlas.");
+            }
+
+            region.Region = regionData;
+            region.UpdateRegion();
+
+            if(applyImmediately)
+            {
+                Skeleton.SetSkin(skin);
+                AnimationState.Apply(Skeleton);
+            }
+
+            // create a new dynamic skin and copy the template skin settings
+            //var dynamicSkin = new Skin();
+            //var templateSkin = Skeleton.Data.FindSkin(skinName);
+            //if (templateSkin == null)
+            //{
+            //    throw new Exception($"The skin {skinName} does not exist on this skeleton.");
+            //}
+            //dynamicSkin.CopySkin(templateSkin);
+
+            //// get the existing placeholder data
+            //var existingSlot = templateSkin.Attachments.Where(a => a.Name == placeholderName).FirstOrDefault();
+            //var existingRegion = existingSlot.Attachment as RegionAttachment;
+            //if (existingRegion == null)
+            //{
+            //    throw new Exception($"Failed to copy {placeholderName} - make sure it exists on the skin and is a texture region placeholder!");
+            //}
+
+            //// assign the atlas texture to a new slot and call Update() to make sure the UVs are recalculated
+            //var dynamicRegion = new RegionAttachment(existingRegion);
+            //var regionData = atlasSource.FindRegion(atlasTextureName);
+            //if (regionData == null)
+            //{
+            //    throw new Exception($"{atlasTextureName} was not found in the provided atlas!");
+            //}
+            //dynamicRegion.Region = regionData;
+            //dynamicRegion.UpdateRegion();
+
+            //// finally, set the attachment on our new skin and apply the skin to the skeleton
+            //dynamicSkin.SetAttachment(existingSlot.SlotIndex, placeholderName, dynamicRegion);
+            //Skeleton.SetSkin(dynamicSkin);
+            //AnimationState.Apply(Skeleton);
+        }
+
         // Eventually we want to support IAnimatable interface, but for now we'll mimic it until we're ready
 
-        public void PlayAnimation(string animationName, bool loop=true)
+        public void PlayAnimation(string animationName, bool loop = true)
         {
             Animation foundAnimation = GetAnimationInternal(animationName);
 
             // see if it's already playing:
-            foreach(var track in AnimationState.Tracks)
+            foreach (var track in AnimationState.Tracks)
             {
-                if(track.Animation != null && track.Animation.Name == foundAnimation.Name)
+                if (track.Animation != null && track.Animation.Name == foundAnimation.Name)
                 {
                     return;
                 }
@@ -334,7 +431,7 @@ namespace FlatRedBall.Spine
             instructions.Add(new DelegateInstruction(() => this.AnimationSpeed = oldSpeed));
             AnimationSpeed = 0;
         }
-        
+
         private Animation GetAnimationInternal(string animationName)
         {
             var foundAnimation = AnimationState.Data.SkeletonData.Animations.Find(item => item.Name == animationName);
