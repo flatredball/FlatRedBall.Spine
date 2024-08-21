@@ -89,6 +89,8 @@ namespace FlatRedBall.Spine
         }
         SkeletonBounds bounds = new SkeletonBounds();
 
+        float IDrawableBatch.Y => this.TopParent.Y;
+
         #endregion
 
         /// <summary>
