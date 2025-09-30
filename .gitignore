@@ -1,4 +1,7 @@
 
+# Ryder metadata
+*/.idea/*
+
 Samples/BuildingTheLibrary/BuiltXnbs/DesktopGL/obj/*
 Samples/BuildingTheLibrary/SpineCSharpNet6/bin/*
 Samples/BuildingTheLibrary/SpineCSharpNet6/obj/*
