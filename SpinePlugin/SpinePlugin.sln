@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glue", "..\..\FlatRedBall\F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDataUi", "..\..\Gum\WpfDataUi\WpfDataUi.csproj", "{D324E067-FB98-4D22-A232-A8035AB74062}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatRedBallDesktopGLNet6", "..\..\FlatRedBall\Engines\FlatRedBallXNA\FlatRedBallDesktopGLNet6\FlatRedBallDesktopGLNet6.csproj", "{384663BB-31EA-4546-8D6A-C120AE81213D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{D324E067-FB98-4D22-A232-A8035AB74062}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D324E067-FB98-4D22-A232-A8035AB74062}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D324E067-FB98-4D22-A232-A8035AB74062}.Release|Any CPU.Build.0 = Release|Any CPU
+		{384663BB-31EA-4546-8D6A-C120AE81213D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384663BB-31EA-4546-8D6A-C120AE81213D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384663BB-31EA-4546-8D6A-C120AE81213D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384663BB-31EA-4546-8D6A-C120AE81213D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{9EDE4FA4-A986-4A83-B42C-8B110F343302} = {55FF23A1-257F-4FC1-A460-290474BAB547}
 		{0354C093-267B-6650-2116-0195DBDCB076} = {55FF23A1-257F-4FC1-A460-290474BAB547}
 		{D324E067-FB98-4D22-A232-A8035AB74062} = {55FF23A1-257F-4FC1-A460-290474BAB547}
+		{384663BB-31EA-4546-8D6A-C120AE81213D} = {55FF23A1-257F-4FC1-A460-290474BAB547}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7798E200-456D-4970-BE79-2305F00C2168}
