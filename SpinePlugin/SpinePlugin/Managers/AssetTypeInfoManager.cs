@@ -29,7 +29,7 @@ namespace SpinePlugin.Managers
                 QualifiedType = "Spine.Atlas"
             };
             ati.Extension = "atlas";
-            ati.FriendlyName = "Spine Atlas";
+            ati.FriendlyName = "Spine Atlas (.atlas)";
             ati.CustomLoadFunc = CustomLoadAtlasFunc;
 
             return ati;
